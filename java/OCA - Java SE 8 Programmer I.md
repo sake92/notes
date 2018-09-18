@@ -1,12 +1,12 @@
-# Did you know?
+# Trivia
 
-## types
-By types we mean `class`es, `interface`s and `enum`s.
+## type
+By type we mean `class`, `interface` or `enum`.
 
 ## identifier
-Identifiers are variable, method and type names.  
-They can start with (and contain) a letter, underscore or a currency sign (`$`, `€` and similar).
-They can't contain special characters like dot, comma, slash etc.
+Identifier is a variable, method or type **name**.  
+It can start with (and contain) a letter, underscore (`_`) or a currency sign (`$`, `€` and similar).
+It can't contain special characters like dot, comma, slash etc.
 
 ## parameter vs argument
 Method parameters are the **variables** that appear in the definition of a method.  
@@ -18,11 +18,11 @@ void abc(String param1) {} // param1 is parameter
 abc(arg1) // arg1 is argument
 ```
 
-## constructors
+## constructor
 Every class has a constructor.  
 If it does not declare one **explicitly** it will get one **implicitly**, with no arguments ("noargs" constructor).
 
-## packages
+## package
 Class with no **explicit** package will be in the *default package* which doesn't have a name. 
 
 Members of a **named package** can’t access anything
@@ -30,11 +30,11 @@ defined in the default package.
 
 You can `import static` static members of a type (class/interface/enum);
 
-## imports
+## import
 Everything from `java.lang` package is **always imported**.  
 Bulk import, e.g. `import mypackage.*` imports that package only, not its subpackages.
 
-## classes
+## class
 Every **top-level public** class must be defined in its own file, and the file name must be the same!  
 E.g. `class MyClass` must be in a file `MyClass.java`.
 
@@ -49,7 +49,7 @@ Any other signature is not valid entry point.
 Variable `args` can have arbitrary name.  
 Keywords `public` and `static` are interchangeable.
 
-## access modifiers
+## access modifier
 <pre>
             │ Class │ Package │ Subclass │ Subclass │ World
             │       │         │(same pkg)│(diff pkg)│ 
