@@ -5,8 +5,14 @@ By type we mean `class`, `interface` or `enum`.
 
 ## identifier
 Identifier is a variable, method or type **name**.  
-It can start with (and contain) a letter, underscore (`_`) or a currency sign (`$`, `€` and similar).
-It can't contain special characters like dot, comma, slash etc.
+It can:
+- start with (and contain) a letter, underscore (`_`) or a currency sign (`$`, `€` ...)
+- contain digits
+
+It can't:
+- start with a digit
+- contain special characters like dot, comma, slash etc
+- be equal to a reserved word like `class`, `int`, `public` etc
 
 ## object vs primitive
 Objects can be `null`, primitives can't.  
@@ -21,6 +27,10 @@ They get *automatically destroyed* after their use by GC, so you don't have to w
 
 ### primitive
 Primitives have fixed set of values they can hold.  
+Literals are "literal values" in **source code**, e.g. `5`, `true`, `1.25_123` etc.  
+As you've seen, you can use **underscores to separate 2 digits** for *readability*, e.g. `10_000.0_144`.  
+Default number system is decimal. Use `0b`/`0B` prefix for binary number literal, `0` for octal and `0x`/`0X` for hexadecimal. E.g. `0B1010` is `10` in decimal.
+
 Primitives can be manipulated with special operators like `++`, `>=`, `/`, `%=` etc.  
 
 You can assign a "smaller" primitive to "bigger", e.g. `int` to `long`.
@@ -30,8 +40,31 @@ long longg = intt;
 intt = longg; // won't compile, can't fit long into int
 intt = (int) longg; // forced cast to int
 ```
+
+#### operators
 You **can compare numeric primitives** (everything except `boolean`), where values are widened as needed. E.g. if you compare `int` and `short`, `short` will be widened to `int`.  
 You can't compare numeric with booleans.
+
+Logical operators `&&` and `||` are "lazy"/"short-circuit".  
+E.g. in condition `(a && b)`, if `a` is `true`, b will be ignored (not evaluated at all!).
+```
+if(true && b++) // b++ not evaluated!
+if(true && b()) // b() not evaluated!
+```
+
+#### wrappers, (auto)(un)boxing
+Every primitive type has corresponding immutable wrapper class, e.g. `int` has `Integer`, `boolean` has `Boolean`.  
+Act of automatically converting a primitive to its wrapper object is called **(auto)boxing**: 
+```Integer i = 5;```
+
+Reverse way (wrapper to primitive) is **unboxing**:
+```
+List<Integer> li = ...;
+for (int i = 0; i < 10; i++)
+    li.add(Integer.valueOf(i));
+```
+
+Only values created with `valueOf` are cached (e.g. `Integer`'s -128 to 127)!
 
 ## parameter vs argument
 Parameters are **variables** that appear in the definition of a method.  
