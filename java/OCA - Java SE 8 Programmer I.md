@@ -8,9 +8,34 @@ Identifier is a variable, method or type **name**.
 It can start with (and contain) a letter, underscore (`_`) or a currency sign (`$`, `€` and similar).
 It can't contain special characters like dot, comma, slash etc.
 
+## object vs primitive
+Objects can be `null`, primitives can't.  
+Both support assignment operator (`=`).  
+
+Primitives can be compared with `==`.  
+But when objects are compared with `==` you compare their "physical addresses". You should probably use `equals` method instead.
+
+### object
+Objects have special operator `new` for allocating memory for a new object.  
+They get *automatically destroyed* after their use by GC, so you don't have to worry about that.
+
+### primitive
+Primitives have fixed set of values they can hold.  
+Primitives can be manipulated with special operators like `++`, `>=`, `/`, `%=` etc.  
+
+You can assign a "smaller" primitive to "bigger", e.g. `int` to `long`.
+```
+int intt = 5;
+long longg = intt;
+intt = longg; // won't compile, can't fit long into int
+intt = (int) longg; // forced cast to int
+```
+You **can compare numeric primitives** (everything except `boolean`), where values are widened as needed. E.g. if you compare `int` and `short`, `short` will be widened to `int`.  
+You can't compare numeric with booleans.
+
 ## parameter vs argument
-Method parameters are the **variables** that appear in the definition of a method.  
-Method arguments are the **actual values** that are passed to a method while executing it.
+Parameters are **variables** that appear in the definition of a method.  
+Arguments are **actual values** that are passed to a method while executing it.
 
 ```
 void abc(String param1) {} // param1 is parameter
