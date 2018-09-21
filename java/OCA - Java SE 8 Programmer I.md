@@ -105,6 +105,38 @@ class MyClass {
     }
 }
 ```
+You can call **super constructor**, from inherited class. Default behavior is calling `super()` from `Object` class. Previous constructor is equivalent to this:
+```
+public MyClass() {
+    super();
+}
+```
+
+Or, you can call **another constructor** (only one! - of course) from current one, but it must be the first line. This is also called **constructor chaining**.  
+```
+public MyClass(int i) { }
+public MyClass() {
+    this(0);
+}
+```
+
+---
+## Initializers
+Initializers are run **before every constructor**:
+```
+public class Constructors {
+    {
+        System.out.print("INIT ");
+    }
+
+    public Constructors() { System.out.println("cons"); }
+
+    public static void main(String[] args) {
+        new Constructors(); // INIT cons
+    }
+}
+```
+If there are **multiple** initializers, they are run **in order they're defined**.
 
 ---
 ## package
