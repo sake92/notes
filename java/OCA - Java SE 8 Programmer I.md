@@ -82,6 +82,40 @@ void abc(String param1) {} // param1 is parameter
 abc(arg1) // arg1 is argument
 ```
 
+Arguments are **always passed by value** (copied).  
+Whether it's a primitive or reference, you can't change its value (outside of method scope). Example with primitive:
+```
+public static void main(String... args) {
+    int i = 1;
+    changePrimitive(i);
+    System.out.println(i); // 1
+}
+static void changePrimitive(int i) {
+    i = 5; // here is 5, we change copy of i
+}
+```
+Example with reference/object:
+```
+ public static void main(String... args) {
+    MyClass obj = new MyClass();
+    obj.x = 1;
+    changeReference(obj);
+    System.out.println(obj.x); // 7
+}
+
+static void changeReference(MyClass obj) {
+    obj.x = 7;
+    obj = new MyClass(); // changed obj local to this method
+    obj.x = 3;
+}
+
+class MyClass {
+    int x;
+}
+```
+
+
+
 ### varargs
 You can only have **one varargs per method/constructor**.  
 Varargs must come as **last parameter**. E.g:
