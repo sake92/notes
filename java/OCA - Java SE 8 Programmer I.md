@@ -62,9 +62,11 @@ Act of automatically converting a primitive to its wrapper object is called **(a
 
 Reverse way (wrapper to primitive) is **unboxing**:
 ```
-List<Integer> li = ...;
-for (int i = 0; i < 10; i++)
-    li.add(Integer.valueOf(i));
+List<Integer> ints = Arrays.asList(1, 2, 3);
+int sum = 0;
+for (Integer i : ints) {
+    sum += i; // unbox Integer `i` to int
+}
 ```
 
 Only values created with `valueOf` are cached (e.g. `Integer`'s -128 to 127)!
