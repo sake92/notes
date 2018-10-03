@@ -72,6 +72,24 @@ for (Integer i : ints) {
 Only values created with `valueOf` are cached (e.g. `Integer`'s -128 to 127)!
 
 ---
+## method
+
+### overload
+Overloading method means having a method with **same name** but **different parameters**.  
+Return type doesn't matter! Example overloads:
+```
+String bla(int i) {
+    return "int";
+}
+Object bla(short i) {
+    return "short";
+}
+void bla(Object i) {
+    System.out.println("Object");
+}
+```
+
+---
 ## parameter vs argument
 Parameters are **variables** that appear in the definition of a method.  
 Arguments are **actual values** that are passed to a method while executing it.
@@ -113,8 +131,6 @@ class MyClass {
     int x;
 }
 ```
-
-
 
 ### varargs
 You can only have **one varargs per method/constructor**.  
@@ -261,33 +277,25 @@ abc.x; // access via reference which is null, won't throw exception!
 ```
 
 ---
+## array
+Array **size cannot be changed** once it's initialized.  
+You **must specify size** of array when creating it.  
+Arrays can be arbitrary nested ({1,2,3,...} - dimensional).
 
+Array items are **initialized to their defaults**, `int`s to zeros, `boolean`s to `false`, objects to `null`s. 
+E.g. `int[] nums = new int[5];` will initialize array `nums` with 5 zeros.
+
+Watch out for c-like syntax that's permitted in Java, e.g.
+`int[] nums[]` is same as `int[][] nums` (2-dimensional array).
+
+The `ArrayIndexOutOfBoundsException` is thrown if you try to access non-existing index, e.g. `-3` or some `index >= arr.length`.
+
+Array has a *property* (**not a method**!) called `length` that returns, well.. the length of array. :)  
+Array extends `Object` class, so it has all its methods like `equals`, `clone` etc.
+
+---
 # Exam specifics
 
 - **Missing package and import statements** and question doesn’t explicitly refer to them? Assume that all sample code is in the same package, and import statements exist to support them.
 - ignore folder layout
 - ignore line wrapping
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
