@@ -75,6 +75,7 @@ Only values created with `valueOf` are cached (e.g. `Integer`'s -128 to 127)!
 
 ---
 ## method
+`final` methods can't be overriden.
 
 ### overload
 Overloading method means having a method with **same name** but **different parameters**.  
@@ -199,12 +200,11 @@ Class with no **explicit** package will be in the *default package* which doesn'
 Members of a **named package** can’t access anything
 defined in the default package.
 
-You can `import static` static members of a type (class/interface/enum);
-
 ---
 ## import
 Everything from `java.lang` package is **always imported**.  
 Bulk import, e.g. `import mypackage.*` imports that package only, not its subpackages.
+You can `import static` static members of a type (class/interface/enum).
 
 ---
 ## type
@@ -215,7 +215,8 @@ You **can** use non-public classes from same package!
 
 ---
 ## class
-Class' member variables are called *class variables* or `static` fields. 
+Class' member variables are called *class variables* or `static` fields.  
+`final class` can't be extended.
 
 ---
 ## interface
