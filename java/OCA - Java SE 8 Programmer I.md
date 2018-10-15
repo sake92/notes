@@ -1,8 +1,9 @@
-# Trivia
+# Tips & tricks
 
 ---
-## type
-By type we mean `class`, `interface` or `enum`.
+## reference and primitive type
+Type usually refers to `class`, `interface` or `enum`.  
+Although primitives are also referred to as types (`int`, `char`, `boolean`).
 
 ---
 ## identifier
@@ -26,7 +27,8 @@ But when objects are compared with `==` you compare their "physical addresses". 
 
 ### object
 Objects have special operator `new` for allocating memory for a new object.  
-They get *automatically destroyed* after their use by GC, so you don't have to worry about that.
+They get *automatically destroyed* after their use by GC, so you don't have to worry about that.  
+Object member variables are called *instance variables*/*attributes*.
 
 ### primitive
 Primitives have fixed set of values they can hold.  
@@ -205,11 +207,21 @@ Everything from `java.lang` package is **always imported**.
 Bulk import, e.g. `import mypackage.*` imports that package only, not its subpackages.
 
 ---
-## class
-Every **top-level public** class must be defined in its own file, and the file name must be the same!  
-E.g. `class MyClass` must be in a file `MyClass.java`.
-
+## type
+Every **top-level public type** must be defined in its own file, and the file name must be the same!  
+E.g. `class MyClass` must be in a file `MyClass.java`.  
+You **can have non-public types** defined in that file!  
 You **can** use non-public classes from same package!
+
+---
+## class
+Class' member variables are called *class variables* or `static` fields. 
+
+---
+## interface
+Default modifiers of an interface method are `public abstract` (you don't have to type it), which means you must implement it in a class.  
+Interface **can have** `static` methods.  
+Interface **can have** `default` methods (doesn't have to be `override`n in class).  
 
 ---
 ## applications / main method
@@ -292,6 +304,12 @@ The `ArrayIndexOutOfBoundsException` is thrown if you try to access non-existing
 
 Array has a *property* (**not a method**!) called `length` that returns, well.. the length of array. :)  
 Array extends `Object` class, so it has all its methods like `equals`, `clone` etc.
+
+---
+## classfile
+Class files, files with `.class` extension must be located in folders that mimic package structure.  
+E.g. a `class MyClass` defined in package `com.example` must have path like `com/example/MyClass.class`.  
+That's because classes are usually loaded with a URL-based classloader.
 
 ---
 # Exam specifics
