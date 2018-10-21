@@ -28,7 +28,7 @@ Final variable can only be **assigned once**.
 ### Object
 Objects have special operator `new` for allocating memory for a new object.  
 They get *automatically destroyed* after their use by GC, so you don't have to worry about that.  
-Object member variables are called *instance variables*/*attributes*.
+Object member variables are called *instance variables*/*attributes*/*fields*.
 
 ### Primitive
 Primitives have fixed set of values they can hold.  
@@ -52,8 +52,8 @@ Dividing an integer with zero throws an exception, while dividing a real number 
 You **can compare numeric primitives** (everything except `boolean`), where values are widened as needed. E.g. if you compare `int` and `short`, `short` will be widened to `int`.  
 You can't compare numeric with booleans.
 
-Logical operators `&&` and `||` are "lazy"/"short-circuit".  
-E.g. in condition `(a || b)`, if `a` is `true`, b will be ignored (not evaluated at all!).
+Logical operators `&&` and `||` are lazy/short-circuit.  
+E.g. in condition `(a || b)`, if `a` is `true`, `b` will be ignored (not evaluated at all!).
 ```
 if(true || b++ > 0)  // b++ not evaluated!
 if(true || b())      // b() not evaluated!
