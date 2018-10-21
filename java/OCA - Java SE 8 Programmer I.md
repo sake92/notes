@@ -1,10 +1,10 @@
 
-## reference and primitive type
+## Reference and primitive type
 Type usually refers to `class`, `interface` or `enum`.  
 Although primitives are also referred to as types (`int`, `char`, `boolean`).
 
 ---
-## identifier
+## Identifier
 Identifier is a variable, method or type **name**.  
 It can:
 - start with (and contain) a letter, underscore (`_`) or a currency sign (`$`, `€` ...)
@@ -16,7 +16,7 @@ It can't:
 - be equal to a reserved word like `class`, `int`, `public` etc
 
 ---
-## Variables
+## Variable
 Objects can be `null`, primitives can't.  
 Both support assignment operator (`=`).  
 
@@ -25,12 +25,12 @@ But when objects are compared with `==` you compare their "physical addresses". 
 
 Final variable can only be **assigned once**.
 
-### object
+### Object
 Objects have special operator `new` for allocating memory for a new object.  
 They get *automatically destroyed* after their use by GC, so you don't have to worry about that.  
 Object member variables are called *instance variables*/*attributes*.
 
-### primitive
+### Primitive
 Primitives have fixed set of values they can hold.  
 Literals are "literal values" in **source code**, e.g. `5`, `true`, `1.25_123` etc.  
 As you've seen, you can use **underscores to separate 2 digits** for *readability*, e.g. `10_000.0_144`.  
@@ -46,7 +46,9 @@ intt = longg; // won't compile, can't fit long into int
 intt = (int) longg; // forced cast to int
 ```
 
-#### operators
+Dividing an integer with zero throws an exception, while dividing a real number returns `Infinity`!
+
+#### Operator
 You **can compare numeric primitives** (everything except `boolean`), where values are widened as needed. E.g. if you compare `int` and `short`, `short` will be widened to `int`.  
 You can't compare numeric with booleans.
 
@@ -57,7 +59,7 @@ if(true && b++) // b++ not evaluated!
 if(true && b()) // b() not evaluated!
 ```
 
-#### wrappers, (auto)(un)boxing
+#### Wrapper, (auto)(un)boxing
 Every primitive type has corresponding immutable wrapper class, e.g. `int` has `Integer`, `boolean` has `Boolean`.  
 Act of automatically converting a primitive to its wrapper object is called **(auto)boxing**: 
 ```Integer i = 5;```
@@ -74,7 +76,7 @@ for (Integer i : ints) {
 Only values created with `valueOf` are cached (e.g. `Integer`'s -128 to 127)!
 
 ---
-### array
+### Array
 Array **size cannot be changed** once it's initialized.  
 You **must specify size** of array when creating it.  
 Arrays can be arbitrary nested ({1,2,3,...} - dimensional).
@@ -90,7 +92,7 @@ The `ArrayIndexOutOfBoundsException` is thrown if you try to access non-existing
 Array has a *property* (**not a method**!) called `length` that returns, well.. the length of array. :)  
 Array extends `Object` class, so it has all its methods like `equals`, `clone` etc.
 
-#### varargs
+#### Varargs
 You can only have **one varargs per method/constructor**.  
 Varargs must come as **last parameter**. E.g:
 ```
@@ -103,14 +105,20 @@ MyClass(int... args) { }
 Varargs are treated as **arrays**! So, `int...` is actually `int[]`.
 
 ---
-## method
+## Method
+
+### Shadow
+You can **shadow a field** with local variable. That's why you can use same name for different variables in setters.
+
+You can **shadow a static method** in a subtype.  
+Method is resolved depending on the **type through which it is called**.
+
+### Override
 `final` methods can't be overriden.  
 
 You can't override a method and specify a **more restrictive access**. E.g. if a method i superclass is `protected` you can't override it with `private` or package-private modifier (you wouldn't fulfill the promise from superclass...).
 
-You can **shadow a field** with local variable. That's why you can use same name for different variables in setters.
-
-### overload
+### Overload
 Overloading method means having a method with **same name** but **different parameters**.  
 Return type doesn't matter! Example overloads:
 ```
@@ -124,6 +132,9 @@ void bla(Object i) {
     System.out.println("Object");
 }
 ```
+
+### Local variable
+If you attempt to use an **uninitialized local variable**, your code will fail to compile. 
 
 ---
 ## parameter vs argument
@@ -197,7 +208,13 @@ public MyClass() {
 ```
 
 ---
-## Initializers
+## Initializer
+
+### Static (class) initializer
+Static initializer is run when the class is loaded.  
+That means **first time it is referenced** in code, starting from main method (or with `Class.forName("a.b.MyClass")` method, explicitly).
+
+### Object initializer
 Initializers are run **before every constructor**:
 ```
 public class Constructors {
@@ -250,7 +267,7 @@ Interface **can have** `default` methods (doesn't have to be `override`n in clas
 If a you need to resolve an ambiguous method, you can call super-interface method with following syntax: `SuperInterface.super.myMethod()`.
 
 ---
-## applications / main method
+## Applications / main method
 Entry point to a program must be defined as one of these: 
 - `public static void main(String args[])` or  
 - `public static void main(String... args)`, where `String...` is varargs syntax.
@@ -260,7 +277,7 @@ Variable `args` can have arbitrary name.
 Keywords `public` and `static` are interchangeable.
 
 ---
-## access modifier
+## Access modifier
 <pre>
             │ Class  │ Package │ Subclass │ Subclass │ World
             │ itself │ (same)  │(same pkg)│(diff pkg)│ 
@@ -316,7 +333,7 @@ Static methods **can not** refer to non-static methods/variables, because there'
 Reverse is possible, non-static can use static stuff.
 
 ---
-## string
+## String
 `String` is an immutable class. You can't `extend` it, can't update it, can only get a new string.  
 
 If you need mutability/performance, use `StringBuilder` and at the end do a `toString` to get a final string.
@@ -349,7 +366,48 @@ value.  When they find the right bucket, then they call the `equals` method to s
 The hashCode values of **two distinct objects** can be the **same**!
 
 ---
-## classfile
+## Exception
+
+### Hierarchy
+- `Throwable`
+    - `Error`
+    - `Exception`
+        - `RuntimeException`
+
+In the root of exception/error hierarchy is the `Throwable` class (something that can be thrown, by JVM itself or with `throw` statement).  
+Only `Throwable` instances can be `catch`ed.
+
+#### Error
+`Error`s are thrown by `JVM` and generally **shouldn't be catched** in user code at all.  
+These classes usually have name ending with "Error", like `StackOverflowError`.
+
+#### Checked exception
+Any subclass of `Throwable` that is not an `Error` or `RuntimeException` is a **checked exception**.
+
+Checked exceptions are **treated specially by compiler**.  
+They must be **either catched or declared** in method/constructor signature with `throws` clause.  
+Code will not compile if you don't respect those rules.
+
+#### Runtime (unhecked) exception
+
+Runtime exceptions, errors and throwables **can also be declared in `throws`** (not required of course), beware on exam!
+
+### Catching
+The `catch` clause inspects the **order of catched exceptions**, the first one that matches the type gets executed.  
+E.g. you **can't** `catch` a base class **and then catch its subtype**, that makes no sense.
+
+### Finally-zing
+The `finally` block gets called **no matter an exception is thrown, catched or not catched**!!! This is very important to remember.  
+A `finally` block is used to define **cleanup code**, to close/release resources (file handles, database connections).
+
+### Try-catch-finally gotchas
+If **both** the catch and finally blocks define return statements, value will be returned **from the finally block**!
+
+Finally block **can mutate object fields**!  
+Finally block **can't mutate value returned from try or catch**!
+
+---
+## Classfile
 Class files, files with `.class` extension must be located in folders that mimic package structure.  
 E.g. a `class MyClass` defined in package `com.example` must have path like `com/example/MyClass.class`.  
 That's because classes are usually loaded with a URL-based classloader.
