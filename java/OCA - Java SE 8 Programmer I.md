@@ -53,10 +53,10 @@ You **can compare numeric primitives** (everything except `boolean`), where valu
 You can't compare numeric with booleans.
 
 Logical operators `&&` and `||` are "lazy"/"short-circuit".  
-E.g. in condition `(a && b)`, if `a` is `true`, b will be ignored (not evaluated at all!).
+E.g. in condition `(a || b)`, if `a` is `true`, b will be ignored (not evaluated at all!).
 ```
-if(true && b++) // b++ not evaluated!
-if(true && b()) // b() not evaluated!
+if(true || b++ > 0)  // b++ not evaluated!
+if(true || b())      // b() not evaluated!
 ```
 
 #### Wrapper, (auto)(un)boxing
