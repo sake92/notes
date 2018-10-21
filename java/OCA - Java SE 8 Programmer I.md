@@ -105,6 +105,9 @@ Varargs are treated as **arrays**! So, `int...` is actually `int[]`.
 ---
 ## method
 `final` methods can't be overriden.  
+
+You can't override a method and specify a **more restrictive access**. E.g. if a method i superclass is `protected` you can't override it with `private` or package-private modifier (you wouldn't fulfill the promise from superclass...).
+
 You can **shadow a field** with local variable. That's why you can use same name for different variables in setters.
 
 ### overload
@@ -227,6 +230,9 @@ You can `import static` static members of a type (class/interface/enum).
 ## type
 Every **top-level public type** must be defined in its own file, and the file name must be the same!  
 E.g. `class MyClass` must be in a file `MyClass.java`.  
+
+Top-level types can only be public or package-private.
+
 You **can have non-public types** defined in that file!  
 You **can** use non-public classes from same package!
 
@@ -240,6 +246,8 @@ Class' member variables are called *class variables* or `static` fields.
 Default modifiers of an interface method are `public abstract` (you don't have to type it), which means you must implement it in a class.  
 Interface **can have** `static` methods.  
 Interface **can have** `default` methods (doesn't have to be `override`n in class).  
+
+If a you need to resolve an ambiguous method, you can call super-interface method with following syntax: `SuperInterface.super.myMethod()`.
 
 ---
 ## applications / main method
@@ -319,6 +327,26 @@ You should compare strings with `equals` but beware these questions on exam.
 Value of `null` is printed as string `"null"`;
 
 Method `replace` replaces a string literally, `replaceAll` replaces a regex pattern...
+
+---
+## equals and hashCode
+
+### equals
+Method `equals` implements an **equivalence relation** on **non-null object references**. For any non-null reference values `x`, `y`, `z`, `equals` has the following properties:
+- reflexive: `x.equals(x) == true`
+- symmetric: `x.equals(y) == true` iff `y.equals(x) == true`.
+- transitive: if `x.equals(y) == true` and `y.equals(z) == true`, then `x.equals(z)` should return `true`
+- consistent: multiple invocations of
+`x.equals(y)` consistently return `true` or consistently return `false`, provided *no **information used in `equals()`** comparisons on the objects is **modified***.
+- `x.equals(null) == false`
+
+### hashCode
+Method `hashCode` is used by some collection classes that use
+key-value pairs (hashtables), where a **key is an object**. They use `hashCode`
+of a key to **search efficiently** for the corresponding value. The `hashCode` of the key is used to **specify a bucket number**, which should store its corresponding
+value.  When they find the right bucket, then they call the `equals` method to select the correct value object.
+
+The hashCode values of **two distinct objects** can be the **same**!
 
 ---
 ## classfile
