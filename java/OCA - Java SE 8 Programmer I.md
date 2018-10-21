@@ -1,6 +1,4 @@
-# Tips & tricks
 
----
 ## reference and primitive type
 Type usually refers to `class`, `interface` or `enum`.  
 Although primitives are also referred to as types (`int`, `char`, `boolean`).
@@ -18,12 +16,14 @@ It can't:
 - be equal to a reserved word like `class`, `int`, `public` etc
 
 ---
-## object vs primitive
+## Variables
 Objects can be `null`, primitives can't.  
 Both support assignment operator (`=`).  
 
 Primitives can be compared with `==`.  
 But when objects are compared with `==` you compare their "physical addresses". You should probably use `equals` method instead.
+
+Final variable can only be **assigned once**.
 
 ### object
 Objects have special operator `new` for allocating memory for a new object.  
@@ -74,8 +74,38 @@ for (Integer i : ints) {
 Only values created with `valueOf` are cached (e.g. `Integer`'s -128 to 127)!
 
 ---
+### array
+Array **size cannot be changed** once it's initialized.  
+You **must specify size** of array when creating it.  
+Arrays can be arbitrary nested ({1,2,3,...} - dimensional).
+
+Array items are **initialized to their defaults**, `int`s to zeros, `boolean`s to `false`, objects to `null`s. 
+E.g. `int[] nums = new int[5];` will initialize array `nums` with 5 zeros.
+
+Watch out for c-like syntax that's permitted in Java, e.g.
+`int[] nums[]` is same as `int[][] nums` (2-dimensional array).
+
+The `ArrayIndexOutOfBoundsException` is thrown if you try to access non-existing index, e.g. `-3` or some `index >= arr.length`.
+
+Array has a *property* (**not a method**!) called `length` that returns, well.. the length of array. :)  
+Array extends `Object` class, so it has all its methods like `equals`, `clone` etc.
+
+#### varargs
+You can only have **one varargs per method/constructor**.  
+Varargs must come as **last parameter**. E.g:
+```
+void bla(String abc, int... args) { }
+bla("fdsf", 1, 2);
+bla("fdsf");
+
+MyClass(int... args) { }
+```
+Varargs are treated as **arrays**! So, `int...` is actually `int[]`.
+
+---
 ## method
-`final` methods can't be overriden.
+`final` methods can't be overriden.  
+You can **shadow a field** with local variable. That's why you can use same name for different variables in setters.
 
 ### overload
 Overloading method means having a method with **same name** but **different parameters**.  
@@ -135,18 +165,6 @@ class MyClass {
 }
 ```
 
-### varargs
-You can only have **one varargs per method/constructor**.  
-Varargs must come as **last parameter**. E.g:
-```
-void bla(String abc, int... args) { }
-bla("fdsf", 1, 2);
-bla("fdsf");
-
-MyClass(int... args) { }
-```
-Varargs are treated as **arrays**! So, `int...` is actually `int[]`.
-
 ---
 ## constructor
 Every class has a constructor.  
@@ -195,15 +213,14 @@ If there are **multiple** initializers, they are run **in order they're defined*
 
 ---
 ## package
-Class with no **explicit** package will be in the *default package* which doesn't have a name. 
-
-Members of a **named package** can’t access anything
-defined in the default package.
+Class with no **explicit** package will be in the *default package* which doesn't have a name.  
+Members of **named packages** can’t access anything
+from the default package.
 
 ---
 ## import
 Everything from `java.lang` package is **always imported**.  
-Bulk import, e.g. `import mypackage.*` imports that package only, not its subpackages.
+Bulk import, e.g. `import mypackage.*` imports that package only, not its subpackages.  
 You can `import static` static members of a type (class/interface/enum).
 
 ---
@@ -237,24 +254,20 @@ Keywords `public` and `static` are interchangeable.
 ---
 ## access modifier
 <pre>
-            │ Class │ Package │ Subclass │ Subclass │ World
-            │       │         │(same pkg)│(diff pkg)│ 
-────────────┼───────┼─────────┼──────────┼──────────┼────────
-public      │   +   │    +    │    +     │     +    │   +     
-────────────┼───────┼─────────┼──────────┼──────────┼────────
-protected   │   +   │    +    │    +     │     +    │         
-────────────┼───────┼─────────┼──────────┼──────────┼────────
-no modifier │   +   │    +    │    +     │          │    
-────────────┼───────┼─────────┼──────────┼──────────┼────────
-private     │   +   │         │          │          │    
+            │ Class  │ Package │ Subclass │ Subclass │ World
+            │ itself │ (same)  │(same pkg)│(diff pkg)│ 
+────────────┼────────┼─────────┼──────────┼──────────┼────────
+public      │   +    │    +    │    +     │     +    │   +     
+────────────┼────────┼─────────┼──────────┼──────────┼────────
+protected   │   +    │    +    │    +     │     +    │         
+────────────┼────────┼─────────┼──────────┼──────────┼────────
+no modifier │   +    │    +    │    +     │          │    
+────────────┼────────┼─────────┼──────────┼──────────┼────────
+private     │   +    │         │          │          │    
 
 + : accessible
 blank : not accessible
 </pre>
-
----
-![alt text](https://i.stack.imgur.com/niONO.png)
-
 
 ### public
 Public member is accessible to anyone, from anywhere.
@@ -275,7 +288,7 @@ variables**.
 
 ---
 ## static
-You can access `static` members via object reference, and even if it is `null`! Example:
+You can access `static` members via (class) object reference, and even if it is `null`! Example:
 ```
 class Abc {
     static int x;
@@ -289,22 +302,23 @@ abc = null;
 abc.x; // access via reference which is null, won't throw exception!
 ```
 
+You **can not** access it through an **object treated as interface**. You must use "normal" syntax `MyInterface.myMethod()`.  
+
+Static methods **can not** refer to non-static methods/variables, because there's no object associated with `static` method (there is no implicit `this`, no context).  
+Reverse is possible, non-static can use static stuff.
+
 ---
-## array
-Array **size cannot be changed** once it's initialized.  
-You **must specify size** of array when creating it.  
-Arrays can be arbitrary nested ({1,2,3,...} - dimensional).
+## string
+`String` is an immutable class. You can't `extend` it, can't update it, can only get a new string.  
 
-Array items are **initialized to their defaults**, `int`s to zeros, `boolean`s to `false`, objects to `null`s. 
-E.g. `int[] nums = new int[5];` will initialize array `nums` with 5 zeros.
+If you need mutability/performance, use `StringBuilder` and at the end do a `toString` to get a final string.
 
-Watch out for c-like syntax that's permitted in Java, e.g.
-`int[] nums[]` is same as `int[][] nums` (2-dimensional array).
+String literals are cached, so `"abc" == "abc"` but `"abc" != new String("abc")`.  
+You should compare strings with `equals` but beware these questions on exam.
 
-The `ArrayIndexOutOfBoundsException` is thrown if you try to access non-existing index, e.g. `-3` or some `index >= arr.length`.
+Value of `null` is printed as string `"null"`;
 
-Array has a *property* (**not a method**!) called `length` that returns, well.. the length of array. :)  
-Array extends `Object` class, so it has all its methods like `equals`, `clone` etc.
+Method `replace` replaces a string literally, `replaceAll` replaces a regex pattern...
 
 ---
 ## classfile
