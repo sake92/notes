@@ -7,21 +7,21 @@ Although primitives are also referred to as types (`int`, `char`, `boolean`).
 ## Identifier
 Identifier is a variable, method or type **name**.  
 It can:
-- start with (and contain) a letter, underscore (`_`) or a currency sign (`$`, `€` ...)
-- contain digits
+- contain and start with a letter, underscore (`_`) or a currency sign (`$`, `€` ...)
+- contain but not start with a digit
 
 It can't:
-- start with a digit
 - contain special characters like dot, comma, slash etc
 - be equal to a reserved word like `class`, `int`, `public` etc
 
 ---
 ## Variable
 Objects can be `null`, primitives can't.  
-Both support assignment operator (`=`).  
+Both support assignment operator `=`.  
 
-Primitives can be compared with `==`.  
-But when objects are compared with `==` you compare their "physical addresses". You should probably use `equals` method instead.
+Both can be compared with `==`.  
+Beware that when you compare two objects with `==`, you actually compare their "physical addresses" (their "identities")!  
+You should probably use `equals` method instead.
 
 Final variable can only be **assigned once**.
 
