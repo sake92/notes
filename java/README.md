@@ -14,7 +14,7 @@ A runnable JAR must have a `MANIFEST.MF` file in it.
 The manifest file must have `Main-Class: com.example.MainClass` field in order to know which class is app's entry point.
 
 ### Classpath
-Classpath is a list of URLs (directory, a JAR, a `.class` file) where JVM should *search for `.class` files*.  
+Classpath is a list of URLs (can be a directory, a JAR, a `.class` file) where JVM should *search for `.class` files*.  
 Default value (if not specified) is current folder, equivalent to: `java -cp .` .
 
 When you require something from classpath, it **searches locations in order they are defined**.  
@@ -27,5 +27,9 @@ See https://stackoverflow.com/a/6935725/4496364
 https://stackoverflow.com/questions/14739550/difference-between-getclass-getclassloader-getresource-and-getclass-getres
 
 
+### IO streams
 
+IO `*{Input,Ouptut}Stream`s (like `InputStream`, `BufferedOutputStream`) are used for R/W **binary data**.
+
+IO `*{Input,Ouptut}{Reader,Writer}`s (like `FileWriter`, `BufferedReader`) are used for R/W **character data**.
 
