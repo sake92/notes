@@ -65,7 +65,7 @@ Act of automatically converting a primitive to its wrapper object is called **(a
 ```Integer i = 5;```
 
 Reverse way (wrapper to primitive) is **unboxing**:
-```
+```java
 List<Integer> ints = Arrays.asList(1, 2, 3);
 int sum = 0;
 for (Integer i : ints) {
@@ -95,7 +95,7 @@ Array extends `Object` class, so it has all its methods like `equals`, `clone` e
 #### Varargs
 You can only have **one varargs per method/constructor**.  
 Varargs must come as **last parameter**. E.g:
-```
+```java
 void bla(String abc, int... args) { }
 bla("fdsf", 1, 2);
 bla("fdsf");
@@ -121,7 +121,7 @@ You can't override a method and specify a **more restrictive access**. E.g. if a
 ### Overload
 Overloading method means having a method with **same name** but **different parameters**.  
 Return type doesn't matter! Example overloads:
-```
+```java
 String bla(int i) {
     return "int";
 }
@@ -141,7 +141,7 @@ If you attempt to use an **uninitialized local variable**, your code will fail t
 Parameters are **variables** that appear in the definition of a method.  
 Arguments are **actual values** that are passed to a method while executing it.
 
-```
+```java
 void abc(String param1) {} // param1 is parameter
 
 abc(arg1) // arg1 is argument
@@ -149,7 +149,7 @@ abc(arg1) // arg1 is argument
 
 Arguments are **always passed by value** (copied).  
 Whether it's a primitive or reference, you can't change its value (outside of method scope). Example with primitive:
-```
+```java
 public static void main(String... args) {
     int i = 1;
     changePrimitive(i);
@@ -160,7 +160,7 @@ static void changePrimitive(int i) {
 }
 ```
 Example with reference/object:
-```
+```java
  public static void main(String... args) {
     MyClass obj = new MyClass();
     obj.x = 1;
@@ -185,7 +185,7 @@ Every class has a constructor.
 If it does not declare one **explicitly** it will get one **implicitly**, with no arguments ("noargs" constructor).
 
 You don't specify a **return type** when writing constructor:
-```
+```java
 class MyClass {
     public MyClass() {
         // body of constructor
@@ -193,14 +193,14 @@ class MyClass {
 }
 ```
 You can call **super constructor**, from inherited class. Default behavior is calling `super()` from `Object` class. Previous constructor is equivalent to this:
-```
+```java
 public MyClass() {
     super();
 }
 ```
 
 Or, you can call **another constructor** (only one! - of course) from current one, but it must be the first line. This is also called **constructor chaining**.  
-```
+```java
 public MyClass(int i) { }
 public MyClass() {
     this(0);
@@ -216,7 +216,7 @@ That means **first time it is referenced** in code, starting from main method (o
 
 ### Object initializer
 Initializers are run **before every constructor**:
-```
+```java
 public class Constructors {
     {
         System.out.print("INIT ");
@@ -314,7 +314,7 @@ variables**.
 ---
 ## static
 You can access `static` members via (class) object reference, and even if it is `null`! Example:
-```
+```java
 class Abc {
     static int x;
 }
