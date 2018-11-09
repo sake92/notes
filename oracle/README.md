@@ -1,4 +1,6 @@
-
+### Prefer TIMESTAMP over DATE
+See https://www.oracle.com/technetwork/database/enterprise-edition/jdbc-faq-090281.html#08_01
+I had problems with **different behavior** of JDBC driver. Sometimes DATE field contained h/m/s, sometimes not...
 
 ### Calling procedure from Spring
 
