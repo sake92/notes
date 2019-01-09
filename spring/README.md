@@ -1,6 +1,7 @@
 
 
-
+### Static resources
+Folders `/static` and `/public` **inside** the `/src/main/resources` folder are served by default in Spring Boot.
 
 
 
