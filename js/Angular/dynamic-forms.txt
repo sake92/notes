@@ -1,0 +1,5 @@
+
+https://github.com/RedFroggy/angular-spring-dynamic-form
+https://toddmotto.com/angular-dynamic-components-forms
+https://angular.io/guide/dynamic-form
+https://stackoverflow.com/questions/38007236/how-to-dynamically-add-and-remove-form-fields-in-angular-2

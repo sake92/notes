@@ -1,0 +1,95 @@
+
+************************************
+****** Template-driven (obične) ****
+************************************
+https://angular.io/guide/forms
+
+
+<form #heroForm="ngForm">
+
+#heroForm je REFERENCA na formu, tj. Angularov hepek zvani NgForm direktiva.
+Angular ovo sam ubaci na svaki <form> tag, jer smo importovali FormsModule.
+Ovako možemo kontrolisati KONTROLE forme (inputi, buttoni, radio..), njihovu validaciju i validaciju forme kao cjeline.
+
+<form #heroForm="ngForm">
+	<div>
+	  <label for="name">Name</label>
+	  <input type="text" id="name"
+			 required
+			 [(ngModel)]="model.name" name="name">
+	</div>
+</form>
+
+Za svaku kontrolu forme (input, radio...) forme Angular instancira novi FormControl.
+Mora se staviti NAME atribut <input> tagova!!!
+Name mora biti jedinstven u sklopu forme.
+Angular to zahtijeva da bi mogli koristiti [(ngModel)] sa formom (2-way binding).
+
+********** praćenje stanja kontrole
+NgModel updateuje i Angularove specifične CSS klase koje možemo iskoristiti.
+Npr (ng-touched <> ng-untouched), (ng-dirty <> ng-pristine), (ng-valid <> ng-valid)
+
+Ima dobar GIF ovdje sa klasama:
+https://angular.io/guide/forms#track-control-state-and-validity-with-ngmodel
+
+
+************************************
+********** Reactive forms **********
+************************************
+
+Ove forme više vole eksplicitno hendlanje podataka koji teku od backenda do frontenda.
+Frontend ima stanje forme/kontrola i radi to što bi trebao da radi.. :D
+
+Vi (eksplicitno) kreirate drvo Angular komponenti i vežete ih za nativne kontrole (u templejtu).
+
+Pošto klasa komponente ima pristup i podacima i formi, 
+možete pushati podatke modela U FORMU i izvlačiti podatke iz forme (nazad u model podataka).
+Komponenta može nadgledati izmjene u kontroli i reagovati na njih.
+
+Reactive forms are synchronous. Template-driven forms are asynchronous. It's a difference that matters.
+
+*********** primjer
+export class HeroDetailComponent {
+  heroForm = new FormGroup ({
+    name: new FormControl()
+  });
+}
+
+<form [formGroup]="heroForm" novalidate>
+  <div>
+    <label>Name:
+      <input formControlName="name">
+    </label>
+  </div>
+</form>
+
+Novalidate atribut u <form> elementu sprječava browser da radi nativnu HTML validaciju.
+
+
+********FormBuilder
+FormBuilder class helps reduce repetition and clutter by handling details of control creation for you.
+
+constructor(private fb: FormBuilder) { }// <--- inject FormBuilder
+
+this.heroForm = this.fb.group({
+  name: ['', Validators.required ],
+});
+
+*********
+https://angular.io/guide/reactive-forms#nested-formgroups
+
+Grupe se mogu UGNIJEŽDAVATI !!! da oslikavaju model, logično :)
+
+this.heroForm = this.fb.group({
+  name: ['', Validators.required ],
+  address: this.fb.group({ ...
+});
+
+
+******* modeli, modeli
+
+The hero from the server is the DATA model. The FormControl structure is the FORM model.
+User changes flow from the DOM elements TO THE FORM MODEL, not to the data model !!!
+The form controls NEVER UPDATE the data model !!!
+
+
