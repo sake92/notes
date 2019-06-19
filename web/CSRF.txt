@@ -1,0 +1,20 @@
+
+Malicious person carries out their attack by making posts
+on websites and social media that contain an image link that looks like this:
+
+<img src="http://www.mystore.com/buy?item=expensiveThing"/>
+ 
+Now imagine a customer who is logged into your site, 
+who is visiting one of the pages where this link has been placed.
+
+When their browser encounters this tag it will automatically makes a GET request
+to the URL (because it naively wants to show the picture to your customer).
+When it does this, it automatically sends along the cookies for www.mystore.com with the request.
+
+Thus, the server thinks your customer is logged in and completes the 1-click purchase for the customer!
+
+https://stormpath.com/blog/angular-xsrf
+
+
+a da je bio token neki u HTTP hederu, ne bi radilo,
+jer njegova stranica ga nema :)
