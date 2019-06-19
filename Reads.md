@@ -1,42 +1,8 @@
 # Reads
 My collection of useful readings, mainly tech resources.  
 Why? My bookmarks bar was full. Bookmark folders weren't manageable anymore... xD  
-:star2: - Highly recommended
- 
 
-- [General](#general)
-  - [Algorithms and data structures](#algorithms-and-data-structures)
-  - [Computer architecture & OS](#computer-architecture--os)
-  - [Object oriented programming](#object-oriented-programming)
-    - [Design patterns](#design-patterns)
-  - [Functional programming](#functional-programming)
-  - [Event driven programming](#event-driven-programming)
-- [Languages](#languages)
-  - [Java](#java)
-    - [Spring](#spring)
-    - [JavaFX](#javafx)
-    - [Eclipse platform](#eclipse-platform)
-    - [Java other](#java-other)
-  - [Scala](#scala)
-    - [Play framework](#play-framework)
-    - [Slick](#slick)
-  - [Javascript](#js)
-    - [Angular 2+](#angular-2)
-  - [HTML](#html)
-  - [CSS](#css)
-- [Build tools](#build-tools)
-  - [Gradle](#gradle)
-  - [Maven](#maven)
-  - [Batch scripts](#batch-scripts)
-  - [Bash scripts](#bash-scripts)
-- [Web](#web)
-  - [REST](#rest)
-  - [Web other](#web-other)
-- [Databases](#databases)
-  - [Oracle](#oracle)
-  - [MySQL](#mysql)
-- [Interactive](#interactive)
-
+:star2: means "Highly recommended"
 
 ---
 # General
