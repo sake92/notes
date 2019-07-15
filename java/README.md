@@ -17,6 +17,10 @@ The manifest file must have `Main-Class: com.example.MainClass` field in order t
 Classpath is a list of URLs (can be a directory, a JAR, a `.class` file) where JVM should *search for `.class` files*.  
 Default value (if not specified) is current folder, equivalent to: `java -cp .` .
 
+Classpath ROOT (can be more of them) is the root of a classpath entry.  
+E.g. if your classpath is `.:/var/whatever`, classpath roots are `.` (current folder) and `/var/whatever`. I think... :D
+https://stackoverflow.com/a/49876435/4496364
+
 When you require something from classpath, it **searches locations in order they are defined**.  
 E.g. if you have two classes with same name, the first one found will be loaded. Same is applied for files etc.  
 See https://stackoverflow.com/a/6935725/4496364
