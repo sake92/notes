@@ -32,6 +32,20 @@ When you require something from classpath, it **searches locations in order they
 E.g. if you have two classes with same name, the first one found will be loaded. Same is applied for files etc.  
 See https://stackoverflow.com/a/6935725/4496364
 
+#### Recursively add all JARs from folders?
+Lets say you have this structure:
+- lib/
+  - example.jar
+  - a/
+    - a1.jar
+  - b/
+    - b1.jar
+
+This is what `-cp` does:
+- `-cp lib/*` adds **only example.jar**
+- `-cp lib/*:lib/a/*` adds example.jar and a1.jar
+
+https://stackoverflow.com/a/9053165/4496364
 
 ### `classLoader.getResource` vs `getClass.getResource`
 
