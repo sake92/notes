@@ -21,6 +21,18 @@ Bilo koji izraz, npr:
 - 0x123 znači M[123]
 - (%rax) je M[rax]
 
+Generalni oblik je:
+```
+ADDRESS(%BASE_ADDRESS, %INDEX, MULTIPLIER)
+```
+a finalna adresa je `ADDRESS + %BASE_ADDRESS + MULTIPLIER * %INDEX`.  
+Svi dijelovi su **opcioni**. Može se navest:
+- samo adresa: `0x123` (direktno adresiranje)
+- samo bazna_adresa/registar: `(%rax)` (indirektno adresiranje)
+- adresa,index,multiplier: `string_start(,%ecx,1)` (adresno indeksiranje, slično kao `mojstring[i]`)
+
+
+
 ---
 Moving data
 
@@ -31,9 +43,9 @@ Onda bi SRC bio null/nula ili nešto drugo..
 Kod x86 instrukcija, SRC i DEST ne mogu biti oboje MEMORIJA!  
 Jedno od njih mora biti konstanta ili registar..
 
-Obične MOV instrukcije pomjeraju samo određene bitove,
-npr. ako na 64bit kompjuteru pomjeraš 32 bita donja, gornji bitovi će ostat kakvi su i bili..
-Postoji MOVZ (mov zero) instrukcija koja nulira gornje bitove maksuz.
+Obične MOV instrukcije pomjeraju samo određene bitove,  
+npr. ako na 64bit kompjuteru pomjeraš 32 bita donja, gornji bitovi će ostat kakvi su i bili..  
+Postoji MOVZ (mov zero) instrukcija koja nulira gornje bitove maksuz.  
 Postoji MOVS (mov signed) instrukcija koje ekstenda ZNAK broja koji smo kopirali..
 
 

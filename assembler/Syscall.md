@@ -18,5 +18,5 @@ Također, vrijednost greške se postavi u globalni `errno` fleg, ali kao **pozit
 
 Vrijednost `errno` se **ne resetuje** pri uspješnom pozivu, već ostaje nepromijenjenooo!!!
 
-
-
+All system calls are executed atomically,  
+without being interrupted by another process or thread.

@@ -1,9 +1,9 @@
 
+PROG=bla
 
+as -o $PROG.o $PROG.s
+ld -o $PROG $PROG.o
 
-as -o bla.o bla.s
-ld -o bla bla.o
-./bla
-
+./$PROG
 echo Exit status: $?
 
