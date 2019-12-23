@@ -51,7 +51,7 @@ power:
     pushq %rbp           #save old base pointer
     movq  %rsp, %rbp     #make stack pointer the base pointer
     subq  $8, %rsp       #get room for our local storage
-    movq  16(%rbp), %rbx #put first argument in %rax
+    movq  16(%rbp), %rbx #put first argument in %rbx
     movq  24(%rbp), %rcx #put second argument in %rcx
     movq  %rbx, -8(%rbp) #store current result
     

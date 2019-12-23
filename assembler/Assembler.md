@@ -1,4 +1,6 @@
 
+https://aaronbloomfield.github.io/pdr/book/index.html
+
 Pipeline:
 preprocesor -> compiler -> asembler -> linker
 
@@ -13,8 +15,13 @@ Na kraju linker samelje sve objektne fajlove u jedan finalni executable fajl.
 
 pointer - adresa
 
----
-Adresni modovi
+## Registri
+Dva registra su vrlo posebna: `SP` (stack-pointer) i `BP` (base-pointer).  
+`SP` se obično ne mijenja direktno već kroz `push` i `pop`.  
+`BP` pokazuje na baznu adresu "stackframe"-a trenutnog poziva f-je.
+
+
+## Adresni modovi
 
 Sve što nije KONSTANTA ili REGISTAR ($123 ili %rax) odnosi se na MEMORIJUUUUUU.
 Bilo koji izraz, npr:
@@ -33,8 +40,7 @@ Svi dijelovi su **opcioni**. Može se navest:
 
 
 
----
-Moving data
+### Moving data
 
 Move instrukcije KOPIRAJU podatke iz SRC u DEST.  
 Nije ono na fazon k'o kod fajlova, da "pomjeri" bukvalno.  
@@ -56,6 +62,62 @@ Postoji MOVS (mov signed) instrukcija koje ekstenda ZNAK broja koji smo kopirali
 - `_start:`     - specijalna labela, tj. `void main()` hepek
 - `.gobl`       - treba i linkeru ova labela, nemoj brisat
 - `.section`    - početak sekcije neke
+
+
+
+# Funkcije
+
+Ovo je možda i **najbitniji dio** kod programiranja u assembly jeziku.  
+Mora se znati konvencija/protokol, ko će šta brisati, pomjerati itd.  
+Najčešće se koristi konvencija iz C jezika, tzv. `cdecl` (C declaration).  
+
+---
+## Pozivatelj/caller
+
+Argumenti funkciji se prosljeđuju pomoću steka. Pushaju se s desna na lijevo.  
+Npr. kod f-je `int bla(int x, float y)` ide:
+```assembly
+push y # nije pravi code, samo da pokažem kako ide.. :D
+push x
+```
+Ovdje je **caller** zadužen za brisanje argumenata sa steka.
+Znači nakon `call abc` moramo počistiti stek, vratit ga na prijašnje stanje:
+```assembly
+push y 
+push x
+call  abc       # pozovemo funkciju abc
+addq  $16, %rsp # počistimo x i y sa steka
+```
+
+Također, ako smo imali neke bitne vrijednosti u registrima, moramo ih sačuvati na stek, i kasnije restorati.  
+To radimo zato što funkcija koju pozivamo ima pravo da ih koristi, može ih prebrisati...  
+Registri koji su "prebrisivi"/volatile nazivaju se **caller-saved registers**!
+
+---
+## Pozvani/callee (pozvana f-ja)
+Registar `rbp` je poseban pravo (BASE POINTER).  
+On označava gdje počinje "stackframe" trenutnog poziva funkcije.  
+U odnosu na njega znamo gdje se nalaze **lokalne varijable** i **argumenti** ovog poziva funkcije itd.
+
+Kada se pozove data f-ja, moramo sačuvati `%rbp` **prethodne funkcije** i vratiti ga, da bi f-ja koja nas je pozvala mogla nastaviti sa svojim radom dalje:
+```assembly
+push %rbp       # sačuvamo rbp pozivajuće f-je
+mov  %rsp, %rbp # referentna tačka OVE F-je
+...             # kod OVE F-JE
+pop  %rbp       # restoramo rbp pozivajuće f-je
+```
+
+### Lokalne varijable
+
+
+### Rezultat
+Rezultat se spremi uvijek u **rax** registar.
+
+
+
+
+
+
 
 
 
