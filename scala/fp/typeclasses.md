@@ -20,7 +20,7 @@ Any method available on `Shape` must be implemented in each of it subtypes.
 
 Also called *parametric polymorphism*, because you provide a type parameter. :)
 Using generics you can write generic methods and generic types (interfaces, classes ...).  
-Classical example is a `List[T]`. Here you need to provide a type `T`, let's say `String`, and you get a `List[T]`
+Classical example is a `List[T]`. Here you need to provide a type `T`, let's say `String`, and you get a `List[String]`
 (you can't instantiate a `List[T]`, that is abstract...).  
 What gives it power is that **every list is handled the same**, regardless of `T`! Whoa! :O
 
