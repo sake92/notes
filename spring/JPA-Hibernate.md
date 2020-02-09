@@ -1,4 +1,11 @@
 
+## Transactions
+
+https://marcin-chwedczuk.github.io/spring-transactional-cheat-sheet
+
+Params `rollback/noRollback` are only for CHECKED EXCEPTIONS!
+The RUNTIME exceptions are ALWAYS ROLLED BACK!
+
 ### Misc
 
 - don't use `saveAndFlush(entity)`, use `@Transactional`

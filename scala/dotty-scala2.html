@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Migrating Scala2 to Dotty</title>
+</head>
+
+<body>
+
+  <h2>Enums</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Intent</th>
+        <th>Before</th>
+        <th>After</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      <tr>
+        <td>Enum</td>
+        <td>
+          <pre><code>
+// using "native" enums
+// problems: https://underscore.io/blog/posts/2014/09/03/enumerations.html
+object Color extends Enumeration {
+  type Color = Value
+  val Red, Green, Blue = Value
+}
+
+// or case objects
+sealed trait Color
+object Color {
+  case object Red   extends Color
+  case object Green extends Color
+  case object Blue  extends Color
+  // plus code for `values` and `valueOf` ...
+}
+          </code></pre>
+        </td>
+        <td>
+          <pre><code>
+// this compiles to case objects
+enum Color {
+  case Red, Green, Blue
+}
+          </code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Parameterized enum</td>
+        <td>
+          <pre><code>
+sealed abstract class Color(val rgb: Int)
+object Color {
+  case object Red   extends Color(0xFF0000)
+  case object Green extends Color(0x00FF00)
+  case object Blue  extends Color(0x0000FF)
+  // plus code for `values` and `valueOf` ...
+}
+          </code></pre>
+        </td>
+        <td>
+          <pre><code>
+enum Color(val rgb: Int) {
+  case Red   extends Color(0xFF0000)
+  case Green extends Color(0x00FF00)
+  case Blue  extends Color(0x0000FF)
+}
+          </code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Algebraic Data Type</td>
+        <td>
+          <pre><code>
+sealed trait Tree
+object Tree {
+  case object Empty                                 extends Tree
+  case class  Leaf(val value: Int)                  extends Tree
+  case class  Node(val left: Tree, val right: Tree) extends Tree
+}
+          </code></pre>
+        </td>
+        <td>
+          <pre><code>
+enum Tree {
+  case Empty
+  case Leaf(val value: Int)
+  case Node(val left: Tree, val right: Tree)
+}
+          </code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Contextual abstractions</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Intent</th>
+        <th>Before</th>
+        <th>After</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      <tr>
+        <td>Providing implicit parameter</td>
+        <td>
+          <pre><code>
+implicit val intOrd: Ordering[Int] = new Ordering[Int] {
+  override def compare(x: Int, y: Int) =
+    if (x < y) -1 else if (x > y) +1 else 0
+}
+
+// or implicit object
+implicit object intOrd extends Ordering[Int] { // ...
+          </code></pre>
+        </td>
+        <td>
+          <pre><code>
+given intOrd as Ordering[Int] {
+  def compare(x: Int, y: Int) =
+    if (x < y) -1 else if (x > y) +1 else 0
+}
+
+// anonymous
+given Ordering[Int] {
+  def compare(x: Int, y: Int) =
+    if (x < y) -1 else if (x > y) +1 else 0
+}
+          </code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Using implicit parameter</td>
+        <td>
+          <pre><code>
+def sort[T](list: List[T])(implicit ord: Ordering[T]) = ???
+          </code></pre>
+        </td>
+        <td>
+          <pre><code>
+def sort[T](list: List[T])(using ord: Ordering[T]) = ???
+
+// anonymous
+def sort[T](list: List[T])(using Ordering[T]) = ???
+          </code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Providing <i>conditional</i> implicit parameter</td>
+        <td>
+          <pre><code>
+implicit def listOrd[T](implicit ord: Ordering[T]): Ordering[List[T]] = // ...
+          </code></pre>
+        </td>
+        <td>
+          <pre><code>
+given listOrd[T](using ord: Ordering[T]) as Ordering[List[T]] { // ...
+          </code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Explicitly providing implicit parameter</td>
+        <td>
+          <pre><code>
+listOrd(intOrd)
+          </code></pre>
+        </td>
+        <td>
+          <pre><code>
+listOrd(using intOrd)
+          </code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+
+</html>

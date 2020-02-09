@@ -12,5 +12,3 @@ Dio memorije koju koristi memory manager naziva se **heap**.
 
 
 
-
-
