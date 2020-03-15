@@ -45,6 +45,10 @@ This is what `-cp` does:
 - `-cp lib/*` adds **only example.jar**
 - `-cp lib/*:lib/a/*` adds example.jar and a1.jar
 
+#### Windows command line too long..
+Make a "path jar", where you specify all the dependencies:
+http://todayguesswhat.blogspot.com/2011/03/jar-manifestmf-class-path-referencing.html
+
 https://stackoverflow.com/a/9053165/4496364
 
 ### `classLoader.getResource` vs `getClass.getResource`
