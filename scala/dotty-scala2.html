@@ -182,6 +182,95 @@ listOrd(using intOrd)
     </tbody>
   </table>
 
+  <h2>Implicit conversions</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Intent</th>
+        <th>Before</th>
+        <th>After</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      <tr>
+        <td>Convert a type implicitly</td>
+        <td>
+          <pre><code>
+implicit def int2Integer(x: Int): java.lang.Integer =
+  java.lang.Integer.valueOf(x)
+          </code></pre>
+        </td>
+        <td>
+          <pre><code>
+given Conversion[Int, java.lang.Integer] {
+  def apply(x: Int): java.lang.Integer =
+    java.lang.Integer.valueOf(x)
+}
+          </code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Extension methods</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Intent</th>
+        <th>Before</th>
+        <th>After</th>
+      </tr>
+
+    </thead>
+    <tbody>
+      <tr>
+        <td>Add method to a type</td>
+        <td>
+          <pre><code>
+class RichString(str: String) {
+  def isBlank: Boolean =
+    str.trim.isEmpty
+}
+implicit def string2RichString(str: String): RichString =
+  new RichString(str)
+
+// or implicit class
+implicit class RichString(str: String) {
+  def isBlank: Boolean =
+    str.trim.isEmpty
+}
+          </code></pre>
+        </td>
+        <td>
+          <pre><code>
+def (str: String).isBlank: Boolean =
+  str.trim.isEmpty
+          </code></pre>
+        </td>
+      </tr>
+      <tr>
+        <td>Add multiple methods to a type</td>
+        <td>
+          <pre><code>
+implicit class RichString(str: String) {
+  def m1 = ???
+  def m2 = ???
+}
+          </code></pre>
+        </td>
+        <td>
+          <pre><code>
+extension stringOps on (str: String) {
+  def m1 = ???
+  def m2 = ???
+}
+          </code></pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
 </body>
 
 </html>
