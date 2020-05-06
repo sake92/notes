@@ -60,5 +60,22 @@ change.
 OO code makes it **hard to add new functions** because all the classes must change.
 (Wadler's problem? typeclasses, visitors)
 
+Also https://en.wikipedia.org/wiki/Law_of_Demeter (not that important IMHO)
+
+
+
+## Error handling
+1. Use exceptions! This is not C, you have a powerful mechanism at your hands.  
+1. Use **unchecked exceptions**! Checked ones just clutter your method signatures and don't add much value to your code...
+1. Log the errors!!!
+1. Don't return `null`!!! Use null-object pattern, empty list/map, `Optional<T>` or throw exception..
+1. Don't pass `null`! Try to find another way, overload function etc.
+
+
+
+
+
+
+
 
 
