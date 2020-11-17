@@ -18,3 +18,7 @@ See https://stackoverflow.com/questions/30819337/multiple-antmatchers-in-spring-
 ### Login programatically
 https://stackoverflow.com/questions/7900994/programmatically-login-in-a-user-using-spring-security
 
+### @Preauthorize vs antMatchers
+Cannot do `.antMatchers("/**").authenticated()` and then `@PreAuthorize("permitAll()")` on a controller method... :D  
+If HTTP gets blocked, you can't "fix that" on method level..  
+https://stackoverflow.com/questions/30529831/spring-security-preauthorize-on-controllers
