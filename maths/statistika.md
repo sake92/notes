@@ -21,6 +21,7 @@ Npr. koji je % plavookih ljudi **u našem uzorku**: `x' = br_plavookih/n`
 
 
 ---
+---
 # Prosjeci
 
 ## Prosjek / Mean
@@ -31,6 +32,7 @@ Poredamo brojeve u rastućem redoslijedu i uzmemo srednji.
 Ako je br. uzoraka paran onda imamo problem, jer nemamo srednji broj. Tada uzmemo prosjek 2 srednja broja.
 
 
+---
 ---
 # Devijacija
 Devijacije ili odstupanja se obično mjere **u odnosu na prosjek**.  
@@ -77,9 +79,80 @@ z = (x-x') / s
 Koristi se za **poređenje uzoraka**, npr. ako su oba random, z-index bi trebao biti poprilično isti.
 
 ---
+---
 # Varijansa
 Vrijednost nađena "unutar standardne devijacije", onaj broj unutar korijena...  
 Tj. V = s^2
+
+TODO
+
+---
+---
+# Kvantili
+Kvantil je broj koji dijeli **sortirane podatke** na k dijelova.  
+Ovo baš baš ima veze sa **medijanom**! :D  
+Najkorisniji su kvartili i percentili.
+
+## Kvartili, quartiles
+
+Kvartil je broj koji dijeli **sortirane podatke** na četvrtine.
+
+- Q1, označava donjih 25%, 1/4
+- Q2, označava donjih 50%, 1/2
+- Q3, označava donjih 75%, 3/4
+
+Nađemo medijan i to je ustvari Q2.  
+Nađemo medijan ispod Q2 i dobićemo Q1.  
+Q3 isto nije težak.. :D
+
+Npr. za 1,3,6,10,15,21,28,36  
+Q2 = 12.5; Q1 = 4.5; Q3 = 24.5; 
+
+Kad imamo neparan broj podataka, medijan se ne uključuje kad se traži Q2 i Q3...
+
+
+### Petobrojni sažetak
+Treba nam 5 brojeva da bi napravili mali sažetak naših podataka:
+- minimalna vrijednost
+- Q1
+- Q2 / medijan
+- Q3
+- maximalna vrijednost
+
+Ovdje se nacrta fina kutijica tipa:
+
+```
+          Q1|....M.......|Q3
+min |.......|    |       |.............| max
+            |....|.......|
+```
+
+Logično, medijan ne mora biti baš na sredini, pa vidimo odokativno kako su nam podaci raspoređeni.
+
+
+### IQR - Interquartile range
+Označava raspon srednjih 50% podataka.  
+`IQR = Q3 - Q1`
+
+Pomoću IQR definišemo šta je **outlier**:
+- sve > od `Q3 + 1.5*IQR`
+- sve < od `Q1 - 1.5*IQR`
+
+---
+## Percentili
+Percentil je broj koji dijeli **sortirane podatke** na stotke/procente.  
+Imamo 99 percentila.
+
+`percentil(x) = (br_podataka_manjih_od_x / n) * 100`
+
+
+
+
+
+
+
+
+
 
 
 
