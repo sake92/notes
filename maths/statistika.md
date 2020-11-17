@@ -2,7 +2,7 @@
 https://www.youtube.com/playlist?list=PL5102DFDC6790F3D0
 
 ## Populacija vs uzorak
-Populacija su svi objekati (100%).
+Populacija su svi objekti (100%).
 Njihov broj se označava velikim slovom N.
   
 Uzorak je dio populacije, ispitanici ili random uzorci itd.  
