@@ -48,4 +48,21 @@ Međutim ima uputstvo u "RUNNING.txt" u Tomcat folderu!!!
 
 
 
+## Performance tuning
+There are 2 modes: BIO and NIO. 
+
+NIO/NIO2 is used by default in Tomcat 8+.  
+It is more performant and can handle much more connections.
+
+BIO is blocking, thread per request model. If you want to handle 100 requests at once you have to use 100 threads.
+In bio maxConnections==maxThreads unless you use a thread pool. E.g. <Executor name="tomcatThreadPool" ...
+
+
+https://stackoverflow.com/questions/24678661/tomcat-maxthreads-vs-maxconnections
+
+PROBLEM: j.n.s.SSLException: handshake timed out	
+Morebit da OS odbija TPC konekcije jer mu je Tomcat REKAO!!
+The `acceptCount` parameter for tomcat dictates the length of the queues at the OS level for completing tcp handshake operations (details are OS specific).
+https://netflixtechblog.com/tuning-tomcat-for-a-high-throughput-fail-fast-system-e4d7b2fc163f
+Znači kad povećaš broj threadova nije loše i to povećat...
 

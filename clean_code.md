@@ -72,9 +72,13 @@ Also https://en.wikipedia.org/wiki/Law_of_Demeter (not that important IMHO)
 1. Don't pass `null`! Try to find another way, overload function etc.
 
 
+## Tests
+Write clean and useful tests!
+Fast, independent, repeatable!
 
-
-
+## Systems
+Use IOC principle! Instantiate/wire all needed classes in the `main` method!  
+Easier to understand, refactor and test. Use factories/DI if needed.
 
 
 
