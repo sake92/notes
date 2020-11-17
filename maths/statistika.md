@@ -2,7 +2,7 @@
 https://www.youtube.com/playlist?list=PL5102DFDC6790F3D0
 
 ## Populacija vs uzorak
-Populacija su svi objekata (100%).
+Populacija su svi objekati (100%).
 Njihov broj se označava velikim slovom N.
   
 Uzorak je dio populacije, ispitanici ili random uzorci itd.  
@@ -16,7 +16,7 @@ Sve *relevantne skupine* moraju biti prisutne u uzorku.
 Parametar je neka karakteristika populacije.  
 Npr. možemo znati % plavookih ljudi: `u = br_plavookih/N`  
 
-Statistički je neka karakteristika uzorka.  
+Statistički podatak je neka karakteristika uzorka.  
 Npr. koji je % plavookih ljudi **u našem uzorku**: `x' = br_plavookih/n`  
 
 
@@ -51,13 +51,30 @@ Ima poprilično komplikovanu formulu(više njih), sa kvadriranjem i korjenima.
 https://bs.wikipedia.org/wiki/Standardna_devijacija
 
 Poznato je da pojačava outliere (vrijednosti koje puno odstupaju).  
-Koristi se vrlo često. Mada ne znam zašto je "bolja" od prethodne, koja je jednostavnija dosta.
+Koristi se vrlo često. Mada ne znam zašto je "bolja" od prethodne, koja je jednostavnija.
 
 Npr. ako imamo vrijednosti: 1,3,14  
 Devijacija je ....... `s = 7`
 
-Vidimo da ove više "laže" koliko je odstupanje, but hey.. :D
+Vidimo da SD više "laže" koliko je odstupanje, but hey.. :D
 
+
+## Empirijsko pravilo, pravilo "68-95-99.7"
+
+Ako je uzorak "normalno distribuiran" (zvonce), 
+tj. nema outliera puno, tada možemo primijeniti ovo pravilo.  
+Ono kaže da skoro svi posmatrani podaci iz uzorka spadaju unutar 3 SD-e.  
+Ono predviđa da:
+- 68% podataka spada u 1 standardnu devijaciju, tj. `x' +- s`
+- 95% podataka spada u 2 standardne devijacije, tj. `x' +- 2s` ("uobičajene vrijednosti")
+- 99.7% podataka spada u 3 standardne devijacije, tj. `x' +- 3s`  ("vrlo rijetke vrijednosti")
+
+## Z-skor, Z-index
+Udaljenost vrijednosti od prosjeka, mjereno u Standardnim devijacijama:  
+z = (x-x') / s
+
+Što je z-index veći, to je podatak rjeđi...  
+Koristi se za **poređenje uzoraka**, npr. ako su oba random, z-index bi trebao biti poprilično isti.
 
 ---
 # Varijansa
