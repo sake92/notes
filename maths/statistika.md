@@ -1,6 +1,19 @@
 
 https://www.youtube.com/playlist?list=PL5102DFDC6790F3D0
 
+# Statistika
+
+Statistika nam daje alate za lakše upoređivanje stvari.  
+Npr. u fudbalu znamo procente za svakog igrača, koliko golova daje po utakmici, kakav je u odbrani i sl.  
+Pomoću tih brojeva možemo poprilično lako uporediti 2 igrača.
+
+U ekonomiji se koristi "gini index" za određivanje "nepravednosti" u prihodima.  
+Što je index veći, to je stanje u toj državi nepravednije, neki ljudi su baš bogati a neki siromašni. Tj. nema srednje klase.
+
+Ovi brojevi **nisu savršeni** ali služe svrsi.  
+Sigurno su jedan od boljih pokazatelja za poređenje.  
+Ne treba se oslanjati samo na statistiku! Uvijek treba pogledati širu sliku.
+
 ## Populacija vs uzorak
 Populacija su svi objekti (100%).
 Njihov broj se označava velikim slovom N.

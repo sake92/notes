@@ -1,7 +1,5 @@
 
-# Teorija vjerovatnoće
-
-## Osnove
+# Osnove
 Zamislimo da bacamo novčić u zrak, kladimo se hoće li biti pismo ili glava.  
 Koja je "vjerovatnoća" da će biti pismo? 
 Nemamo pojma šta će biti, naravno, možemo pogriješiti.
@@ -13,7 +11,7 @@ Dakle, tek kada je **broj eksperimenata dovoljno veliki**, možemo nešto tvrdit
 
 Npr. ovdje bi vjerovatnoća dobijanja glave bila, naravno 1/2 tj. 50%.
 
-### Elementarni događaj
+## Elementarni događaj
 Osnovni pojam u teoriji vjerovatnoće je "elementarni događaj" (mogući ishod).  
 Skup svih elementarnih događaja naziva se "skup elementarnih događaja" Q.  
 "Slučajni događaj" A je **podskup** skupa Q.
@@ -21,7 +19,9 @@ Skup svih elementarnih događaja naziva se "skup elementarnih događaja" Q.
 Npr ako bacamo kockicu, imamo elementarne događaje: `Q={"pada 1", "pada 2",...,"pada 6"}`.  
 Slučajni događaj "pada paran broj" je skup `A={pada 2, pada 4, pada 6}`.
 
-### Događaj
+## Događaj
+Događaj je ustvari SKUP elementarnih događaja!
+
 Događaj Q je neminovan, desiće se 100%, vjerovatnoća mu je 1.  
 Prazan skup `{}` je nemoguć, vjerovatnoća mu je 0.
 
@@ -39,34 +39,60 @@ neg(A) je skup svih događaja koji nisu u A.
 
 ---
 ---
-## Vjerovatnoća
+# Vjerovatnoća
 P(A) se definiše kao vjerovatnoća realizacije događaja A.  
 To je realan broj za koji vrijedi:
 - 0 <= P(A) <= 1.
 - P({}) = 0
 - P(Q)  = 1
 
+## Nezavisni događaji
+Nezavisni događaji se:
+- **ne mogu desiti istovremeno**, ne preklapaju se
+- **ne zavise jedan od drugog**, ne uslovljavaju se
+
+Npr. ako pitamo koja je vjerovatnoća da ćemo baciti kockicu i dobiti 1 ili 4? Ta 2 događaja su potpuno nezavisna, ne mogu se desiti istovremeno.  
+Pošto se vjerovatnoća *povećava kada kažemo "ovo ili ovo?"* znači da se sabiraju:
+```
+P(A U B) =  P(A) + P(B)
+```
+Za kockice bi bilo 1/6 + 1/6 = 2/6 = 1/3 = 33.3%
+
+---
+Kada bi pitali koja je vjerovatnoća da ćemo dobiti **1 pa onda 4**, tada bi se vjerovatnoća drastično smanjila.  
+Zaključujemo da se vjerovatnoće ovih **nezavisnih događaja** množe:
+```
+P(A presjek B) = P(A) * P(B)
+```
+Te bi ovdje imali 1/6 * 1/6 = 1/36
+
+## Zavisni događaji
+
+Događaji A i B su zavisni ako **vjerovatnoća B zavisi od vjerovatnoće A**.  
+
+Npr. ako tražimo vjerovatnoću dobijanja broja 2 ili parnog broja, ta 2 događaja se **mogu desiti istovremeno**, kad dobijemo 2.  
+Taj posebni događaj moramo isključiti, tj. njegovu vjerovatnoću, jer je ona **već  uključena u obe vjerovatnoće**...
+```
+P(A U B) =  P(A) + P(B) - P(A presjek B)
+```
+Za naš primjer to je 1/6 pa bi rezultat bio:  
+1/6 + 3/6 - 1/6 = 1/2 = 50%
+
+---
+Vjerovatnoća B, pod uslovom da se A realizovao, piše se sa P(B|A).  
+```
+P(A presjek B) = P(A) * P(B|A)
+  ili ekvivalentno:
+P(A presjek B) = P(B) * P(A|B)
+```
+Nađimo vjerovatnoću izvlačenja srceta iz špila karata, a zatim 7 pik (bez da vraćamo kartu u špil!).  
+Imamo `P(A) = 13/52`, `P(B|A) = 1/51`, pa je rezultat `13/(52*51)`.  
+Vidimo da je na vjerovatnoću B uticao događaj A, sada imamo manje karata u špilu!
+
+---
 Vrijede i sljedeće formule:
-- P(A U B) =  P(A) + P(B)        // A ili B, kada su A i B disjunktni
-- P(A U B) =  P(A) + P(B) - P(A presjek B)
-- P(A presjek B) = P(A) * P(B)   // A i B, kada su A i B disjunktni
 - A podskup B   =>  P(A) <= P(B)
 - P(neg(A)) = 1 - P(A)
-
-Npr. vjerovatnoća dobijanja broja prilikom bacanja kocke je P(n)=1/6.  
-Vjerovatnoća da ćemo dobiti tri šestice zaredom je 1/6* 6 *6 = 1/216.  
-Možemo dobiti rezultate Q={111,112,..,116,..,666} a jedini povoljan ishod je 666.  
-Pošto je |Q|=6^3 rezultat je 1/6^3 :)
-
-
-
----
----
-## Zavisni događaji
-Događaji A i B su zavisni ako **vjerovatnoća B zavisi od vjerovatnoće A**.
-Vjerovatnoća B pod uslovom da se A realizovao piše se sa P(B|A).  
-P(B|A) = P(A presjek B) / P(A)
-
 
 
 
