@@ -66,7 +66,8 @@ Zato što je `n-k+1 = 4-2+1 = 3`, znači množimo do `3`.
 
 Druga formula se može shvatiti na sljedeći način:
 - `n!` su sve permutacije
-- nas zanima samo umnožak prvih `k` brojeva, tako da moramo odstraniti `(n-k)!` njih:  
+- nas zanima samo umnožak prvih `k` brojeva od `n!`,  
+tako da moramo odstraniti `(n-k)!` njih:  
 `V(4,2) = 4! / (4-2)! = 4!/2! = 4*3*2! / 2! = 4*3 = 12`
 
 ## Varijacije s ponavljanjem 
@@ -77,7 +78,7 @@ V(n,k) = n^k
 
 Za naš primjer bilo bi `V(4,2) = 4^2 = 16` varijacija.  
 Odaberemo na prvo mjesto jedan od 4 elementa,
-na drugo mjesto jedan od 4 elementa, a to je `4*4=16`.
+na drugo mjesto isto jedan od 4 elementa, a to je `4*4=16`.
 
 > Npr. ako imamo `{A,A,A,A,A,A,B,C,D}` i biramo 2 elementa, i mogu se ponavljati.  
 > Je li nam stvarno bitno da li imamo jedno `A` ili 156 njih?  
@@ -89,7 +90,7 @@ na drugo mjesto jedan od 4 elementa, a to je `4*4=16`.
 # Kombinacije
 ## Kombinacije bez ponavljanja
 
-Redoslijed sada nije bitan.  
+Sada **redoslijed nije bitan**.  
 Iz skupa od `n` elemenata biramo njih `k`:  
 ```
 C(n,k) = (n nad k) = n! / ((n-k)! * k!)
@@ -103,6 +104,7 @@ Npr. ako imamo `k=3`, tada je `ABC=ACB=BAC=BCA=CAB=CBA`, a tih permutacija ima `
 Tako da samo umanjimo/podijelimo br. varijacija njima.
 
 ## Kombinacije s ponavljanjem 
+Ovaj dio je najkomplikovaniji vala.... :D  
 
 Pošto se sada elementi mogu ponavljati, nemamo više `n` izbora već `n+k-1` izbor.  
 Npr. za `k=3` to je `4+3-1=6` jedan od mogućih izbora bi mogao biti `A,B,B,B,C,D` ili `A,A,B,C,C,D`.  
