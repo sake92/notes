@@ -3,7 +3,7 @@ http://users.telenet.be/vdmoortel/dirk/Maths/PermVarComb.html
 
 https://www.mathsisfun.com/combinatorics/combinations-permutations.html
 
-# Prebrojavanja
+# Prebrojavanja / Kombinatorika
 
 Recimo da imamo `n` nekih elemenata.  
 Imamo 2 često postavljana pitanja u raznim granama nauka:
@@ -97,6 +97,8 @@ C(n,k) = (n nad k) = n! / ((n-k)! * k!)
 ili
 C(n,k) = V(n,k) / k!
 ```
+
+Na engleskom se "n nad k" kaže "n choose k", što u prevodu znači "od n biramo k"!
 
 Druga formula je možda malo intuitivnija.  
 Ako imamo sve varijacije `V(n,k)`, samo trebamo izbaciti "duplikate".  

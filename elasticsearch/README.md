@@ -108,11 +108,10 @@ Nakon filtera se gleda "query", rangiraju se dokumenti i dodjeljuje im se "score
                     "keyword": "whatever1"
                 }
             },
-            "filter": {
-                "term": {
-                    "isEnabled": false
-                }
-            }
+            "filter": [ 
+                { "term":  { "status": "published" }},
+                { "range": { "publish_date": { "gte": "2015-01-01" }}}
+              ]
         }
     }
 }

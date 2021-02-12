@@ -1,4 +1,16 @@
 
+There are 3 very important aspects of (distributed) software systems:
+- reliability: correctness, fault tolerance
+- scalability: autoscaling
+- maintainability: code organization, ease of deployment, complexity, extensibility
+
+Failure vs fault:
+- failure: total crash, nothing works
+- fault: crash of system part, stuff could work partially..
+
+Latency vs response time:
+- latency: time request waiting in queueu to be processed
+- response time: time of user waiting for response
 
 ## Realtime systems
 

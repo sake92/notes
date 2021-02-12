@@ -98,19 +98,115 @@ Vrijede i sljedeće formule:
 
 ---
 ---
-## Slučajna promjenjiva
+# Slučajna promjenjiva
+To je u suštini promjenjiva čija vrijednost zavisi od nekog slučajnog događaja.  
 Funkcija X(omega) koja svakom slučajnom događaju dodjeljuje neki realni broj
 naziva se **slučajna promjenjiva**.
 
-Npr. ako bacamo 2 novčića, skup ishoda je {PP, PG, GP, GG}.
-Ako je slučajna promjenjiva definisana kao broja pisama, imala bi vrijednosti:
-X(PP)=2, X(PG)=1, X(GP)=1, X(GG)=0.
+Npr. ako bacamo 2 novčića, skup ishoda je {PP, PG, GG, GP}.
+Uzmimo npr. da je slučajna promjenjiva definisana kao **broja pisama**.  
+Ovim događajima **proizvoljno dodijelimo brojčane vrijednosti**, samo da bi ih znali razlikovat:  
+3-dobijamo dva pisma, 2-dobijamo jedno pismo, 1-dobijamo nula pisama (mora biti pozitivan broj!).
 
-### Diskretna slučajna promjenjiva
-Kod diskretne slučajne promjenjive skup vrijednosti je konačan ili beskonačno prebrojiv.
+## Slučajna promjenjiva
+Može biti diskretna i kontinualna.  
+Kod diskretne slučajne promjenjive skup vrijednosti je konačan ili beskonačno prebrojiv (N).  
+Kod kontinualne, vrijednosti su opisane neprekidnom funkcijom...
 
-Raspodjela vjerovatnoća slučajne promjenjive X je skup parova (x,p):  
-(2      1       0       ) // vrijednosti promjenjive  
-(1/4    1/2     1/4     ) // vjerovatnoće
+# Raspodjela vjerovatnoće
+
+## Diskretna raspodjela vjerovatnoće
+Raspodjela vjerovatnoće slučajne promjenjive X (iz prethodnog primjera) je skup parova (x,p):  
+(3      2       1)      // vrijednosti promjenjive  
+(0.25    0.5    0.25)   // vjerovatnoće, zbir mora biti 1
+
+
+### Prosječna vrijednost slučajne promjenjive (očekivana vrijednost)
+```
+u   = SUMA( x*f ) / N
+    = SUMA( (x*f) / N ) 
+    = SUMA( x* f/N ) 
+    = SUMA( x * P(x) ) // jer je f/N ustvari P(x), vjerovatnoća događaja x
+```
+
+Kod nas bi bilo `u = 3*0.25 + 2*0.5 + 1*.25 = 2`.  
+Što i ima smisla, prosjek i jest 2. tj. dobijanje jednog pisma!
+
+Ovaj prosjek se još naziva i **očekivana vrijednost**!  
+Na en. se kaže "expected value", pa se označava se `E[X]`.  
+Ona nam pomaže **pri odlučivanju**, npr. da li se isplati ulaziti u neko ulaganje, s obzirom na dobit/rizik.
+
+
+### Varijansa
+
+```
+sigma^2 = SUMA( x^2 * P(x) ) - u^2
+```
+Kod nas bi bilo `sigma^2 = 3^2*0.25 + 2^2*0.5 + 1^2*.25 - 2^2 = 0.5`.  
+
+### Standardna devijacija
+
+```
+sigma = SQRT( SUMA( x^2 * P(x) ) - u^2 ) 
+```
+Kod nas bi bilo `sigma = 0.707`. 
+
+### Binomna raspodjela vjerovatnoće
+
+Ovdje se radi o događajima YES/NO, tj. samo **2 moguća ishoda**! Svi događaji moraju biti nezavisni.  
+Ako imamo:
+- `n` događaja ukupno
+- `x` željenih događaja, `x<n` naravno..
+- `p` je vjerovatnoća jednog željenog događaja, i uvijek je ista!
+- `q` = `NOT(p)`
+Računa se preko binomne formule:
+```
+P(x) = C(n,x) * p^x * q^(n-x)
+```
+
+Npr. ako se pitamo koja je vjerovatnoća da dobijemo **tačno 3 petice** iz **10 bacanja kockice**.  
+To možemo dobiti ovom formulom.  
+`P(3) = C(10,3) * 0.166^3 * 0.833^(10-3) = 0.152`
+
+---
+Možemo dobiti i **kumulativnu binomnu vjerovatnoću**.  
+Npr. kada pitamo koja je vjerovatnoća da dobijemo **3 petice ili manje** iz **10 bacanja kockice**.  
+Logično, samo saberemo vjerovatnoće P(1) + P(2) + P(3)...
+
+Imamo
+- prosjek bin. raspodjele: `u = n*p`
+- varijansu bin. raspodjele: `sigma^2 = n*p*q`
+- std.dev. bin. raspodjele: `sigma = SQRT(n*p*q)`
+
+---
+
+## Kontinualna raspodjela vjerovatnoće
+Ovdje više nemamo diskretne vjerovatnoće i događaje...  
+
+
+## Normalna distribucija
+Ovdje možemo iskoristiti ono empirijsko pravilo "68-95-99.7".  
+Također, površina ispod te zvonce krive je 1.  
+To je u suštini ukupna vjerovatnoća...  
+Možemo iskoristiti i z-skor da skontamo koliko je nečega u prvih 95% ili obrnuto itd......
+
+
+
+# Mont Hall problem
+
+Do you want 1 random door out of 100 (initial guess) or the **best door** out of 99?  
+Said another way, do you want 1 random chance or the best of 99 random chances?
+
+https://betterexplained.com/articles/understanding-the-monty-hall-problem/
+
+---
+---
+Korisno:
+
+https://www.analyticsvidhya.com/blog/2017/09/6-probability-distributions-data-science/  
+https://www.mathsisfun.com/data/index.html
+
+
+
 
 

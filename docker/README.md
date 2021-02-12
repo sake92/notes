@@ -3,20 +3,16 @@ https://github.com/wsargent/docker-cheat-sheet
 
 Na Windowsu umjesto singlequoute (') koristi doublequotes (")...
 
-Image je kao EXECUTABLE, kod spreman za izvršavanje.
-Container je kao PROCES, jedna instanca image.
+Image je kao EXECUTABLE/klasa, kod spreman za izvršavanje.
+Container je kao PROCES/objekat, jedna instanca image-a.
 
 Probati `docker run hello-world` čisto da znamo da fercera..  
 
-Piše se `docker image ls` da izlista sve **image**.
-Piše se `docker ps` da izlista sve **containere**.
+- `docker image ls` da izlista sve **image**.
+- `docker ps` da izlista sve **pokrenute containere** (`-a` da izlista i ugašene).
 
 Dockerfile defines what goes on in the environment inside your container.  
-To se koristi kad ti praviš svoj image.
 
-## Buildanje image
-`docker build --tag=friendlyhello .`
-Image je izbildan u lokalni image repo.
 
 ## Run
 `docker run -p 4000:80 friendlyhello`
@@ -33,19 +29,25 @@ docker image rm tet354eg4535
 
 
 ## Container info
-`docker inspect tet354eg4535`  
-`docker logs tet354eg4535`
 
-`docker top`    ->  show running processes in container
-`docker stats`  ->  show containers' resource usage statistics
-`docker exec`   ->  execute a command in container
+`docker logs tet354eg4535`
+`docker inspect tet354eg4535`  
+
+- `docker top`    ->  show running processes in container
+- `docker stats`  ->  show containers' resource usage statistics
+- `docker exec`   ->  execute a command in container
   `docker exec -it f9b299fca359 /bin/bash` (da "uđeš" u container)
-`docker exec`   ->  execute a command in container
+  `-i` je "interactive"
+  `-t` je "terminal/TTY"
+- `docker rm f9b299fca359` -> obriši kontejner
 
 ## Stop all containers
 docker stop $(docker ps -aq)
 
 
+## Buildanje image
+`docker build --tag=friendlyhello .`
+Image je izbildan u lokalni image repo.
 
 ## Docker file system
 https://www.ionos.com/community/server-cloud-infrastructure/docker/understanding-and-managing-docker-container-volumes/
