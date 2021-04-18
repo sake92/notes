@@ -1,5 +1,5 @@
 # Java 11
--Download latest JDK from https://github.com/TravaOpenJDK/trava-jdk-11-dcevm
+- Download latest JDK from https://github.com/TravaOpenJDK/trava-jdk-11-dcevm
 - Add VM arg: `-XX:HotswapAgent=fatjar`
 
 ---
