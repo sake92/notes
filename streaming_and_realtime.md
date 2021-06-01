@@ -1,4 +1,7 @@
 
+https://gist.github.com/danilobatistaqueiroz/0f3100d36f200afef3b4d87ce0bb1d52
+
+
 There are 3 very important aspects of (distributed) software systems:
 - reliability: correctness, fault tolerance
 - scalability: autoscaling

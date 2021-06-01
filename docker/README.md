@@ -3,7 +3,7 @@ https://github.com/wsargent/docker-cheat-sheet
 
 Na Windowsu umjesto singlequoute (') koristi doublequotes (")...
 
-Image je kao EXECUTABLE/klasa, kod spreman za izvršavanje.
+Image je kao EXECUTABLE/klasa, kod spreman za izvršavanje.  
 Container je kao PROCES/objekat, jedna instanca image-a.
 
 Probati `docker run hello-world` čisto da znamo da fercera..  
