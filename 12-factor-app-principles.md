@@ -37,8 +37,8 @@ Only the stuff that's *really important* and different from env to env.
 For example you won't necessarily extract "max-threads" or similar, but you will extract URLs to external services and passwords...
 
 [Spring](https://docs.spring.io/spring-boot/docs/1.5.6.RELEASE/reference/html/boot-features-external-config.html#boot-features-external-config-application-property-files)
-has a nice feature where you can pass the stuff from `application.properties` as an env var.  
-For example if you have a property `a.b.c` you can pass it a an env var called `A_B_C`.
+has a nice feature where you can pass the stuff from `application.properties` through env vars.  
+For example if you have a property `a.b.c` you can pass it as an env var called `A_B_C`.
 
 In [Play/Hocon](https://github.com/lightbend/config#optional-system-or-env-variable-overrides) you can do the same thing.
 
