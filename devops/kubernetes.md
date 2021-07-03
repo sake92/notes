@@ -5,13 +5,13 @@ https://www.youtube.com/watch?v=X48VuDVv0do
 ## Orkestracija
 
 # Pod
-pod == (docker) container
+pod == (docker) container(s)  
 node == (physical) server
 
-Pods should be stateless, so that we can restart them easily.  
-Any data that should survive a restart should be written to a volume/redis/db/s3/whatever.
+Pods should be **stateless**, so that we can restart/replace them easily.  
+Any data that should survive a restart should be written to a **volume**/redis/db/s3/whatever.
 
-Each pod has its own (internal) IP address.  
+Each pod has its own, cluster-internal IP address.  
 If it gets restarted, it will get a NEW IP.
 
 ## Deployment
