@@ -2,8 +2,6 @@
 
 https://www.youtube.com/watch?v=X48VuDVv0do
 
-## Orkestracija
-
 # Pod
 pod == (docker) container(s)  
 node == (physical) server
