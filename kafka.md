@@ -8,11 +8,11 @@
 - može odradit nešto pa se VRATIT nazad...
 
 - svaki consumer pripada nekoj GRUPI
-- kad se publisha neka poruka, SAMO JEDAN CONSUMER IZ GRUPE će primit poruku
+- kad se publisha neka poruka, SAMO JEDAN CONSUMER IZ GRUPE će pročitat poruku
 - ako su consumeri iz različitih grupa onda će SVI dobit poruku, broadcast
 
 You can think of Kafka as a kind of special purpose distributed filesystem dedicated to high-performance,
-  low-latency commit log storage, replication, and propagation.
+low-latency commit log storage, replication, and propagation.
 
 ## PARTICIJE
 

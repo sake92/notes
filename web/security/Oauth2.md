@@ -1,4 +1,6 @@
 
+https://developer.okta.com/blog/2019/10/21/illustrated-guide-to-oauth-and-oidc
+
 Oauth2 CLIENT je SERVERSKAAAAAA APLIKACIJAAAAAA (3rd partyyyy)
 npr moja app je client fejsbukov...  
 fejsbuk je tu resource server  

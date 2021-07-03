@@ -31,7 +31,7 @@ If you're 100% sure that body of service method does not update db, only then pu
 Otherwise, if you put `readOnly=true`, Hibernate won't update any state in db!!!
 
 
-
-
+NE MOŽE JOIN ako nemaš referenci/asocijacija između @Entity-es.......
+https://stackoverflow.com/questions/20473033/jpa-left-join-2-tables-without-association
 
 

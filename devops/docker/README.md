@@ -14,6 +14,11 @@ Probati `docker run hello-world` čisto da znamo da fercera..
 Dockerfile defines what goes on in the environment inside your container.  
 
 
+Uvijek ide SOURCE -> DESTINATION, tj. HOST->DOCKER!  
+Npr. kod portova je `8081:80` mapira host port 8081 na port 80 iz dokera...  
+Isto tako `COPY src bla` kopira src iz hosta u folder bla iz dokera.
+
+
 ## Run
 `docker run -p 4000:80 friendlyhello`
 
@@ -59,7 +64,8 @@ Kad se instancira container, napravi se read-write FS, sa svim fajlovima iz RO-F
 E sad, da ne bi stalno rekreirali te fajlove, koristimo tzv. VOLUMEs.  
 Volume-i prežive između rekreiranja containera.  
 Pomoću njih naš host može komunicirati sa containerom, dijeliti fajlove.  
-Također, može se namjestit i da containeri između sebe dijele volume.
+Također, i containeri između sebe dijele volume.  
+Zgodno je za čuvanje podataka iz baze i sl.
 
 Kreiranje volume:
 `docker volume create --name my-volume`  
@@ -74,3 +80,18 @@ Ovo je zgodno da nabrzakE testiraš nešto zDokerom.
 Namapiraš explicitno folder sa hosta na Dokerov folder.  
 Ovo nije dobro jer se ne možeš oslonit da će svaki user imat taj folder spreman.. baš za ovaj naš docker container i tako to...  
 Plus ne može se koristit u Dockerfile tek tako.
+
+
+
+
+
+
+
+
+
+### Misc
+
+Default ENTRYPOINT je `/bin/sh -c`.  
+CMD su argumenti za ENTRYPOINT...
+
+Default USER je root.

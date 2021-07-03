@@ -13,7 +13,9 @@ Prije se koristio `--link` fazon, ali se on mora napravit za OBA DOKERA, pa je n
 ## Default bridge network
 
 Docker kontejneri "žive u svom svijetu", po defaultu.  
-Unless you `docker run --network="host"`.  
+Imaju svoju malu virtuelnu mrežu, svaki ima svoju IP adresu...
+
+Unless you `docker run --network="host"`!
 
 https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach
 

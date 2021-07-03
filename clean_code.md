@@ -12,7 +12,8 @@ Use meaningful variable/function/class names.
 
 1. Don't use **magic constants**. Always make a variable. Easier to refactor later!
 1. Use descriptive names: `userPhone`, `customerId`.. Don't make me guess!
-1. Don't prefix interfaces with `I`, e.g. `IMyService`.. Why should a user care that's an interface???
+1. Don't prefix interfaces with `I`, e.g. `IMyService`.. Why should a user care that it is an interface???  
+That's the **whole point of interface**, to *abstract away the details*
 1. You can use single-letter name but only in a **narrow context**, lambda or a for loop..
 1. Don't encode type in the name, e.g. `userString`... We have compilers now!
 1. Be **consistent**! If you used `UserRepo::findByName()`, don't make `UserRepo::getByEmail()`.. it's confusing and rude! :D
