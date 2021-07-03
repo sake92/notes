@@ -18,7 +18,9 @@
     - nije loše za lokalni development
     - mada ima i minikube (lokalni k8s)
     
-
+Btw, ne moraš setapovat cijelu infrastrukturu *uvijek nanovo*.  
+Ako je manji projekat, može se i u jednom Kubernetes clusteru napravit više namespacea,
+pa u njima podijelit na dev/staging/prod npr...
 
 ## Secrets
 
