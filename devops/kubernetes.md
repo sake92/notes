@@ -74,6 +74,8 @@ Npr. shareaš auth server, logging infra itd.
 
 Volumei su globalni. Ne mogu bit per-namespace.
 
-
+---
+Drugi fazon je i environment.  
+Npr. možeš napravit namespace za svaki PR, da se može testirat!!???????
 
 
