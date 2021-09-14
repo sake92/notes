@@ -51,6 +51,7 @@ i zatim
 helm install -f values.yaml bitnami/wordpress --generate-name
 ```
 
+
 ### Update
 Kad izmijenimo config/verziju:
 ```sh
@@ -66,11 +67,20 @@ Kucamo `helm history happy-panda` za listu revizija/verzija..
 
 
 ### Create chart
+
+https://docs.bitnami.com/tutorials/create-your-first-helm-chart/
+
 ```sh
 helm create bla
 helm package bla
 helm install bla ./bla-0.1.0.tgz
 ```
 
+
+U folderu gdje je Chart:
+```sh
+helm dependency update
+helm install --dry-run --debug my-service-name .
+```
 
 
