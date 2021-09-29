@@ -1,8 +1,9 @@
 
 
+930275aa-e4f6-4aff-8d3c-f0722975470c
 
 
-8da4d20a-d9ca-450d-8eca-6d9f80124a7e
+https://www.youtube.com/watch?v=2PPSXonhIck
 
 # Keycloak
 
@@ -28,6 +29,8 @@ Role se mogu i compozati, ugniježdavati, nasljeđivati....
 
 ## Group
 Možemo staviti usere u "grupe", user *nasljeđuje sve atribute grupe*.  
+Grupa je skroooooooooooz slična roli...
+
 Zgodno je imati grupu "employees" npr i dodijelit/uzeti im određene role...
 
 
@@ -60,6 +63,11 @@ Možemo verifikovat JWT na 2 načina:
 
 
 -----------------
+# Tipovi web aplikacija
+- SPA
+- bekend za SPA ili all-in-one PHP/Spring/whatever ili "gateway"
+- bekend iza gatewaya, treba nam samo JWT
+
 
 ### SPA
 Kad imaš SPA, prilikom logina se radi **puni redirect na Keycloak**,  

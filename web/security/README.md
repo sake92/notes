@@ -2,6 +2,8 @@
 PREDOBROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO:
 https://portswigger.net/web-security
 
+https://www.youtube.com/watch?v=2PPSXonhIck
+
 
 Ekstra knjiga za identity management:  
 Keycloak - Identity and Access Management for Modern Applications: Harness the power of Keycloak, OpenID Connect, and OAuth 2.0 protocols to secure applications
