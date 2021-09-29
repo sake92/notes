@@ -1,4 +1,10 @@
 
+
+https://www.amazon.com/Serious-Cryptography-Practical-Introduction-Encryption/dp/1593278268
+
+plain - input tekst, čisti tekst....
+ciphertext - enkriptovani tekst
+
 # Teorija
 
 Ako ima BILO KAKAV PATTERN u plain/cipher kombinaciji, napadač će to iskoristit, skontaće nešto...  
@@ -29,7 +35,11 @@ On se koristi za ENKRIPCIJU.
 Dakle, svako može poslat poruku enkriptovanu,  
 ali je samo 1 učesnik može dekriptovati, tj. pročitati.
 
+Ovo se koristi kod TLS/HTTPS protokola.
 
+
+---------------
+---------------
 ## Block cipher algoritmi
 
 Enkriptuju blok po blok.  
@@ -43,8 +53,35 @@ DES - stari algoritam, nije siguran danas
 AES - Advanced Encryption System, većina kriptovanja danas se radi preko ovog algoritma
 
 
+-------------------------------
+## AES
+AES procesira blokove **po 16 BAJTOVA** tj 128 bitova.  
 
+
+### AES modes
+Imamo ECB (not secure) i CBC.  
+https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation
+
+####  ECB (Electronic codebook) nije siguran nikako (Adobe passwords leak).  
+Može se skontat pattern između plain i cipher (vidi se pingvin)...   
+Koristi mapiranje između bloka i ciphera, pa se uvijek isto dobije....
+
+#### CBC (Cipher Block Chaining)  
+Ovaj algoritam uzima cipher PRETHODNOG bloka kao INPUT trenutnog ciphera.  
+Pošto *prvi blok nema prethodni ciphertext*, mora se dati neki *random initial value* IV (kao seed neki).  
+Ovaj Random IV garantuje da neće bit isti ciphertext za 2 ISTA BLOKA.  
+Dekripcija mora *znati IV vrijednost*, i ona se šalje skupa sa ciphertextom.
+
+Ako je plaintext duži/kraći koristi se:
+- padding mode, dopunjavanje na 16.  
+Za padding se koriste PKCS#7 i RFC5652 standardi.
+- ciphertext stealing mode (ista dužina ciphertexta kao plaina), rijetko se koristi, komplikovan..
+- counter CTR mode, pretvori u stream cipher...
+
+
+---------------------------------------
 ---------- OPENSSL playground ---------
+---------------------------------------
 
 # PRIVATE KEY
 Random key (broj obični..):
