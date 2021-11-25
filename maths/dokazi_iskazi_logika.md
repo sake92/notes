@@ -52,13 +52,23 @@ Ovo je u programiranju funkcija `T => Boolean`.
 
 ## Princip dobre uređenosti (well ordering principle)
 
-"Svaki neprazni skup nenegativnih cijelih brojeva ima najmanji element."  
+"Svaki neprazni skup prirodnih brojeva postoji najmanji element."  
 Čim je skup, svi elementi su različiti. 
 Pošto su cijeli, mogu se poredit, tj. zna se koji je manji između svaka dva. ŠTD :D  
 Btw, što mora bit nenegativnih??? Zato što morebit beskonačan skup, pa kad krenemo {0,1,...} ope ima najmanji. :)
 
 Ovaj princip je zgodan kad treba dokazat nešto za sve nenegativne integere.
-Hehe, ispostavlja se da je SVAKI KONAČAN SKUP dobro uređen !!! :O ima logike
+Hehe, ispostavlja se da je SVAKI KONAČAN SKUP dobro uređen !!! :O ima logike, moraš od nečeg krenut
+
+
+Npr. želimo dokazat da se svaki razlomak može predstaviti najmanjim činiocima: `a = m/n`.  
+Pretpostavimo da postoji razlomak `m0/n0` koji se NE MOŽE predstavit najmanjim činiocima, tj ne može se "skratit".  
+Skup C sadrži sve djelioce m0 i n0, nije prazan (po pretpostavci) te po WOP ima najmanji element.  
+Pošto možemo podijeliti i m0 i n0 sa p, slijedi:
+`(m0/p) / (n0/p) , ali to je m0/n0 `, kontradikcija!
+
+Tj. `m0/p pripada C` a p najmanji, nema logike.. :D
+
 
 ### Dobro uređeni skupovi
 Skup je dobro uređen ako svaki njegov neprazni podskup ima najmanji element.
