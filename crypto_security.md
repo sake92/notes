@@ -3,6 +3,7 @@
 https://www.amazon.com/Serious-Cryptography-Practical-Introduction-Encryption/dp/1593278268
 
 plaintext - input tekst, čisti tekst....
+
 ciphertext - enkriptovani tekst
 
 # Teorija
@@ -36,9 +37,9 @@ Blok ne smije biti premal (security) niti prevelik (zbog performansi).
 Danas (a i ubuduće) 128 bitova je taman, teško ga je dekriptovat (ha koristio 128 - ha 256 -> brute-force ne radi), 
 a i performantan je na modernim procesorima.
 
-DES - stari algoritam, nije siguran danas
-3DES - sigurniji DES, ali nije performantan
-AES - Advanced Encryption System, **većina kriptovanja danas se radi preko ovog algoritma**
+- DES - stari algoritam, nije siguran danas
+- 3DES - sigurniji DES, ali nije performantan
+- AES - Advanced Encryption System, **većina kriptovanja danas se radi preko ovog algoritma**
 
 
 -------------------------------
@@ -98,7 +99,7 @@ Broj `p` treba bit prost broj takav da je i `(p-1)/2` prost (npr. 23 zadovoljava
 
 Sigurnost se oslanja na teškoću diskretnih logaritama (logaritam mod n).
 
-> "Obični" DH alg. nije siguran protiv man-in-the middle attack.
+> "Obični" DH alg. nije siguran protiv man-in-the middle attack.  
 > Mora se udrobit još i signature neki za sigurnost protiv toga.
 
 ### RSA
