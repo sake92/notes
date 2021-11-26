@@ -49,7 +49,10 @@ AES procesira blokove **po 16 BAJTOVA** tj 128 bitova.
 
 AES modovi:
 - ECB (not secure)
-- CBC
+- CBC (kinda secure, ali vulnerable na padding oracle attacks, POODLE)
+- CTR, PREPORUČEN ZA KORIŠTENJE (koristi stream cipher u pozadini)
+
+https://security.stackexchange.com/questions/52665/which-is-the-best-cipher-mode-and-padding-mode-for-aes-encryption   
 https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation
 
 ####  ECB (Electronic codebook) nije siguran nikako (Adobe passwords leak).  
@@ -67,6 +70,8 @@ Ako je plaintext duži/kraći koristi se:
 Za padding se koriste PKCS#7 i RFC5652 standardi.
 - ciphertext stealing mode (ista dužina ciphertexta kao plaina), rijetko se koristi, komplikovan..
 - counter CTR mode, pretvori u stream cipher...
+
+---------------------------------------
 
 ## Streaming cipher algs
 Slično kao kod CBC, štiklaju se jedan za drugim...
@@ -149,8 +154,61 @@ Curve25519 koristi Chrome, Apple, OpenSSH itd.
 ---------------------------------------
 
 
-# TLS
+# TLS (Transport Layer Security)
+Preteča TLSa je SSL (Secure Socket Layer) protokol.  
+TLS je ono S u HTTPS, kad bude katanac. :D
 
+TLS 1.3 je zadnja verzija, koja je popravila dosta vulnerabilities u starijim verzijama.
+TLS je ustvari skup protokola, a ne jedan protokol.  
+TLS čuči između TCP i jednog višeg protokola: HTTP ili SMTP npr.  
+Tj. on osigurava siguran prenos *preko TCP*.
+
+Štiti/enkriptuje konekciju između klijenta i servera.  
+Klijent je bilo ko ko komunicira sa serverom: browser, android telefon, drugi server neki, postman i sl.  
+Komunikacija je sigurna, autenticirana, nemodifikovana.. saso mange  
+
+Sprečava man-in-the-middle napade tako što koristi certifikate za servere (i opciono za klijente).
+
+
+## TLS protokoli
+Imaju 2 glavna protokola:
+- handshake protokol, za uspostavljanje shareanog private keya (DiffieHelman protokol)
+- record protokol, format data paketa koji se šalju
+
+Handshake (rukovanje) inicira klijent.  
+Klijent prvo pošalje ClientHello poruku, zajedno sa:
+- verzijom TLSa koju podržava
+- listom preferiranih ciphera koju hoće da koristi/podržava.  
+Server vraća ServerHello poruku, sa odabranom konfiguracijom.  
+Kad oba učesnika obrade te poruke, spremni su da razmjenjuju *enkriptovane poruke*.
+
+Poruke su enkriptovane *session keyem* dobijenim iz tog handshake procesa.  
+Session key je različit od sesije do sesije, tako da i ako se kompromituje nije velik/trajni problem.  
+TLS sesija obično ima timeout od 300 sekundi.
+
+
+### TLS Certifikati
+Ovo je **najbitniji dio** TLS-a.  
+Server ima *svoj jedinstveni certifikat*, s kojim *dokazuje klijentu* da je on *fakat taj server* (nešto kao lična karta..).  
+To je u suštini **public-key + signature_keya + metapodaci**.
+
+Kad se browser konektuje sa nekom stranicom:
+- dobavi njen certifikat
+- verifikuje signature
+- ako je OK, browser *vjeruje tom serveru* i može nastaviti sa "pričanjem"
+
+Certificate Authority (CA) je public-key **hardkodiran u browser/OS**, kojem "logično" vjerujemo da je sahih.  
+To su kao "notari" u realnom svijetu, **njihov pečat je validan**.  
+Npr. `example.com` treba TLS certifikat, i jedan taj CA mu udari pečat, tj izda mu certifikat/CIPS/ličnu... :)
+
+Certificate Chain je lanac certifikata koji su validni.  
+Npr taj neki krovni CA izda certifikat nekom, i onda on može dalje da udara certifikate koji su "pod njim".
+
+
+---
+OMG, kae security experti misle da su certifikati "broken-by-design", ali nemamo ništa bolje zasad hahahahahahah.  
+Msm i ima smisla jer je kao domino efekat, turtles all the way.....  
+Ako 1 CA upadne svi certifikati koje je opečatio su nevalidni...... jah
 
 ---------------------------------------
 ---------------------------------------

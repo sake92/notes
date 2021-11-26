@@ -18,7 +18,7 @@ nego samo IMPLIKACIJU!
 Samo pretpostavimo da JESTE P(n)! :)  
 Zato što, heh, kao domineeeeee.
 
-Indukcija nije INTUITIVNa za SHVATANJE zašto je teorema istinita.  
+Indukcija nije INTUITIVNA za SHVATANJE zašto je teorema istinita.  
 Ali je jako zgodna za dokazivanje. ŠTD.
 
 ## Jaka indukcija
