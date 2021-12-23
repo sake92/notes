@@ -4,26 +4,30 @@ https://owasp.org/www-community/attacks/csrf
 CSRF == XSRF == Session Riding == One-Click attack
 
 Sa malo socijalnog inžinjeringa, napadač može prevariti korisnika date web stranice
-da odradi neku akciju koju nije naumio.   
---> See, I pulled a little sneaky on ya!? :)
+da odradi neku *akciju koju nije naumio*.   
 
-Primjeri napada:
-- link u emailu/chatu/bilo-gdje (možda čak i na istoj stranici! :) XSS-y )
-- sakrivena forma u emailu koja se automatski submita
-- ako je GET vulnerable, može čak i obični `<img>` tag:  
-`<img src="http://www.mystore.com/buy?item=expensiveThing"/>`
-- IFRAME pa uzet CSRF token? Ne može jer su iframes baš baš restricted, pogotovo kad je sa druge domene..  
+Cookies prema `mystore.com` se uvijek automatski šalju.  
+Bez obzira *sa koje stranice* taj request dolazi.  
+Napadač ne mora vidjeti cookie nikako, samo napravi request.
+
+Primjeri:
+- obični tag (ako je GET):  `<img src="http://mystore.com/buy?item=expensiveThing"/>`
+- link da klikneš negdje.. (ako je GET)
+- sakrivena forma koja se automatski submita (ako nije GET)
+
+Može li IFRAME pa uzet CSRF token? Ne može jer su iframes baš baš restricted, pogotovo kad je sa druge domene..  
 https://stackoverflow.com/questions/38290968/csrf-and-iframes
 (ali može Clickjacking lolz)
 
 ## CSRF problem/odbrana
-Problem su cookies, jer se **automatski šalju pri svakom requestu**.  
-Fazon je natjerat usera da odradi neku akciju koju *nije mislio odradit* (uplatit pare meni npr).  
-
+Napad je okinuti akciju *u ime usera*.  
 Odbrana je kako skontat koji request dolazi sa tvoje stranice/domene, a koji je "hakovan"/napadački/falsifikat.  
-Klasična odbrana koristi CSRF token.  
+
+Klasična odbrana koristi **CSRF token**.  
 Svaka akcija **koja mijenja stanje na serveru** bi trebala ići sa CSRF tokenom!  
-Bez tokena napadač može mahat ušima.
+Bez tokena napadač ne može skoro ništa.
+
+Druga zaštita je `SameSite` cookie atribut koji kaže browseru da šalje **taj cookie** samo ako je na **istoj domeni**!
 
 Do not use GET requests for state changing operations!
 
@@ -50,7 +54,7 @@ TLDR za obične forme:
 TLDR za AJAX:
 - dodat `<meta name="csrf-token" content="{{ csrf_token() }}">` (ili u Cookie/sesiju čak!)
 - slat taj token u svakom AJAX requestu u *custom headeru*
-- ne storat CSRF u `cookie`/`localStorage`/`sessionStorage`
+- ne storeat CSRF u `cookie`/`localStorage`/`sessionStorage`
 
 https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html#axios
 
@@ -62,10 +66,6 @@ Ovo se koristi u Play Frameworku, i baš je zgoda.
 Token se vrati klijentu u Cookie.  
 Zatim kad se radi request, taj token će bit i u Cookie a i u headeru/formi.  
 Ako ne matchaju onda request ne valja.
-
-### SameSite cookie attribute
-
-Kaže browseru da šalje **taj cookie** samo ako je na istoj domeni! :)
 
 
 

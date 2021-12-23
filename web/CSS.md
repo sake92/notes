@@ -25,6 +25,17 @@ Sa frameworcima/gridom možeš podijelit ekran/komponentu na više REDOVA...
 
 
 # Flexbox
+
+<div class="flexy">
+  <div class="item1">item123</div>
+  <div class="item2">item456</div>
+</div>
+
+.flexy { display: flex }
+.item1 { flex: 1 0 400px }
+.item2 { flex: 1 0 200px }
+
+---
 Zgodan trik sa marginom AUTO:
 https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Aligning_Items_in_a_Flex_Container#using_auto_margins_for_main_axis_alignment
 

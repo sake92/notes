@@ -1,9 +1,14 @@
 
+CRYPTO TLDR: https://www.youtube.com/watch?v=3rmCGsCYJF8&t=15s  
 
+wow https://www.youtube.com/watch?v=oDkg1zz6xlw
+
+BOOKS:
 https://www.amazon.com/Serious-Cryptography-Practical-Introduction-Encryption/dp/1593278268
+Cryptography Engineering: Design Principles and Practical Applications
+https://www.amazon.com/Applied-Cryptography-Protocols-Algorithms-Source/dp/B072K4XBJJ
 
-plaintext - input tekst, čisti tekst....
-
+plaintext - input tekst, čisti tekst....  
 ciphertext - enkriptovani tekst
 
 # Teorija
@@ -13,6 +18,10 @@ Zato cipher algoritam mora:
 - da zavisi samo od TAJNOG KEYA
 - da za jedan te isti input UVIJEK VRATI RAZLIČIT(random-izgledajući) ciphertext, da napadač ne može tražit patterne na osnovu ciphertexta
 
+NIKAD, ALI BAŠ BAŠ NIKAD  
+NE KORISTI ISTI CIPHER ZA 2 RAZLIČITE STVARI !!!  
+Tj. može ako je key/IV/mode drugačiji.
+
 ## Dužina keya
 Za dužinu keya se bira broj bitova, obično 128, 256 i dr.  
 To nam daje 2^128 kombinacija, što je puuuno više od broja nanosekundi starosti svemira, 2^88.  
@@ -21,9 +30,57 @@ Da bi probali brute-force, trebalo bi nam 2^128 nanosekundi.
 Ne, čak ni sa quantum-superduper-kompjuterima... :)
 
 ## Pristupi enkripciji
-Postoje 2 načina enkripcije koji se danas koriste:
-- simetrična, gdje 2 učesnika dijele privatni key
-- asimetrična, gdje SVI učesnici dijele public key, ali samo jedan ima privatni(može dekriptovat poruku)
+Postoje 3 tehnike koje se koriste prilikom enkripcije:
+- heširanje, ne može niko otključat "poruku", i uvijek se dobije isti rezultat za 1 input
+- simetrična enkripcija, gdje 2 učesnika dijele privatni key
+- asimetrična enkripcija, gdje SVI učesnici dijele public key, ali samo jedan ima privatni(može dekriptovat poruku)
+
+
+### Analogije
+Recimo da imamo kutiju koja se može zaključat.
+
+Simetrična enkripcija ja kad svi imaju kopiju ISTOG KLJUČ.  
+
+Asimetrična je kao da neko ima ključ koji može otključat kutiju (privatni ključ).  
+Svi ostali imaju kopiju drugog ključa koji može SAMO ZAKLJUČAT KUTIJU (public key).  
+Može biti i KONTRA, da 1 zaključa a svi mogu otključat, to se koristi kod AUTENTICIRANJA(digital signature npr).  
+100% smo sigurni da je to ta osoba jer je SAMO ONA MOGLA ZAKLJUČAT KUTIJU.
+
+---------------------------------------
+---------------------------------------
+# (Kriptografsko) Hashiranje
+
+Obične heš funkcije nemaju puno stroge zahtjeve kao kriptografske.  
+Pod "obične" misli se na heševe objekata kada pravimo hešmape i sl. strukture podataka.. :)
+
+Ulaz u heš funkciju je niz bitova (obično neki fajl), a rezultat je niz bitove **fiksne dužine** !
+
+Ciljevi/koristi:
+- hashiramo plaintext password, i spasimo u bazu, ako neko hakuje nema passworde od usera -> security stonks
+- hashiramo fajl i postavimo na download page, kad neko downloada naš fajl, može uporedit hasheve -> security stonks
+- možemo uporedit hasheve fajlova da ne skidamo 1 te isti fajl opet -> optimization stonks
+- MAC(Message Authentication Code) kao heš poruke, da znamo da je fakat ta osoba poslala tu poruku, da nije izmijenio niko...  
+Ovdje se koristi tajni key za heširanje poruke.
+- digitalni potpisi
+
+Rezultat heš funkcije naziva se "heš" ili "digest" ili "fingerprint".
+
+Algoritmi:
+- MD5, nije secure ali je zgodan za fajlove, brz
+- SHA1, nije secure ali je bolji od MD5
+- SHA2 i SHA3(pogotovo) jesu secure, pogotovo 256bitni i više
+- bcrypt(i scrypt) jeste secure za passworde, jer je pravo spor, težak za bruteforce
+
+Problemi:
+- kolizije, kad se potrefi isti hash
+- rainbow tabele, pre-calculated hashevi.. -> posoli, otežaj :)
+
+### MAC
+Enkripcija osigurava da niko ne može pročitati poruku.  
+MAC osigurava da niko ne može izmijeniti poruku, kao pečat neki koji se može provjerit.  
+HMAC je hash-MAC, koristi jednu od hash funkcija. Poruka i key se "mergeaju" nekako i onda se to hešira.
+
+Preporuka: HMAC-SHA-256
 
 ---------------------------------------
 ---------------------------------------
@@ -62,7 +119,7 @@ Koristi mapiranje između bloka i ciphera, pa se uvijek isto dobije.... wack
 #### CBC (Cipher Block Chaining)  
 Ovaj algoritam uzima cipher PRETHODNOG bloka kao INPUT trenutnog ciphera.  
 Pošto *prvi blok nema prethodni ciphertext*, mora se dati neki *random initial value* IV (kao seed neki).  
-Ovaj Random IV garantuje da neće bit isti ciphertext za 2 ISTA BLOKA.  
+Ovaj Random IV garantuje da **neće bit isti ciphertext za 2 ISTA BLOKA**.  
 Dekripcija mora *znati IV vrijednost*, i ona se šalje skupa sa ciphertextom.
 
 Ako je plaintext duži/kraći koristi se:
@@ -79,7 +136,7 @@ Slično kao kod CBC, štiklaju se jedan za drugim...
 ---------------------------------------
 ---------------------------------------
 ---------------------------------------
-# Asimetrična enkripcija
+# Asimetrična (public key) enkripcija
 Koriste se privatni i public key(evi).  
 Public enkripcija se koristi kod TLS/HTTPS protokola.
 
@@ -113,7 +170,8 @@ ali je samo 1 učesnik je može dekriptovati, tj. pročitati (sa private key).
 Ova 2 ključa su "keypair".
 
 Njegova otpornost ovisi o djeljivosti brojeva.  
-Ako neko skonta kako naći faktore ogromnog broja, razbio je RSA (i još dosta crypto algoritama).
+Ako neko skonta kako naći faktore ogromnog broja, razbio je RSA (i još dosta crypto algoritama).  
+Mora se koristit bar 2048-bitni key.
 
 Postoji standard za RSA koji se zove PKCS#1 koji definiše 2 šeme:
 - PKCS#1 v1.5 (RSAES-PKCS1-v1_5), starija šema koja ima poznate napade, nije sigurna
@@ -204,6 +262,9 @@ Npr. `example.com` treba TLS certifikat, i jedan taj CA mu udari pečat, tj izda
 Certificate Chain je lanac certifikata koji su validni.  
 Npr taj neki krovni CA izda certifikat nekom, i onda on može dalje da udara certifikate koji su "pod njim".
 
+---
+Kod VPN-a npr je "firma" glavni CA za svoje zaposlenike.  
+Svako dobije neki certifikat da može pristupit mreži od firme..
 
 ---
 OMG, kae security experti misle da su certifikati "broken-by-design", ali nemamo ništa bolje zasad hahahahahahah.  

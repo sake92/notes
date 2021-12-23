@@ -1,17 +1,23 @@
 
-Virtual hosting znači više web stranica na istom hostu/serveru, npr sake.ba i kicin.ba  
-To znači da obe imaju ISTU IP ADRESU!!! :O
-I npr. browser kae `GET /index.html`, kako server zna koju stranicu da hosta?  
-Pa Host header, LOL. U njeg se metne koju stranicu šicaš.  
-Ako server nije virtuelni, može ignorisat taj header.
-
-Host 		- koji server pozivaš, mora se koristit U SVIM REQUESTIMA PREMA VIRTUELNIM SERVERIMA!!!
-Referer 	- odakle dolaziš, s koje stranice, ko te poslo
+wow, ok, wtf  
+https://www.youtube.com/watch?v=oDkg1zz6xlw  
+https://www.shodan.io
 
 
-## bla.com vs bla.com/
-Generalno/tehnički su RAZLIČITI URL-ovi.  
-https://webmasters.googleblog.com/2010/04/to-slash-or-not-to-slash.html
+
+## DNS fazoni
+Kad ukucaš `sake.ba` tvoj ruter ima *defaultni gateway*, to je prvi ruter na koji je nakačen konfjuter.  
+Zatim taj ruter pinga DNS od ISP (bhtelecom, logosoft..) i on onda idući DNS koji je odgovoran,  
+sve dok ne stigne do DNSa koji ZNA IP ADRESU na kojoj je ta stranica.
+
+- `ipconfig`/`ifconfig` - lokalne IP adrese
+- `ping sake.ba` - vidi je li taj host dostupan ikako, preko ICMP protokola
+- `nslookup sake.ba` - daj mi IP adresu ove domene
+- `tracert sake.ba`/`traceroute sake.ba` - tracea request, isprati sve "hopove"/rutere na putu do te domene
+
+Možeš i *overrideat DNS resolvanje* u etc/hosts npr.
+
+
 
 ## koji HTTP STATUS vratit?  
 https://stackoverflow.com/questions/942951/rest-api-error-return-good-practices
@@ -37,6 +43,25 @@ Ako si u nedoumici, koristi POST
 
 URL hostname, npr www.sake.ba je CASE-INSENSITIVE. Može biti samo jedna domena s tim imenom.  
 Ostatak URLa, naime PATH i QUERY bi trebali bit CASE-SENSITIVE!!! /bla != /BLA != /Bla ...
+
+
+
+## Virtual hosting
+Virtual hosting znači više web stranica na istom hostu/serveru, npr sake.ba i kicin.ba  
+To znači da obe imaju ISTU IP ADRESU!!! :O
+I npr. browser kae `GET /index.html`, kako server zna koju stranicu da hosta?  
+Pa `Host` header, naravno. Probaj iz CURL/Postmana!!! U njeg se metne koju stranicu šicaš.  
+Ako server nije virtuelni, može ignorisat taj header.
+
+Host 		- koji server pozivaš, mora se koristit U SVIM REQUESTIMA PREMA VIRTUELNIM SERVERIMA!!!
+Referer 	- odakle dolaziš, s koje stranice, ko te poslo
+
+
+## bla.com vs bla.com/
+Generalno/tehnički su RAZLIČITI URL-ovi.  
+https://webmasters.googleblog.com/2010/04/to-slash-or-not-to-slash.html
+
+
 
 ***************
 Tipovi autentikacije:

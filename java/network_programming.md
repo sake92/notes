@@ -14,6 +14,8 @@ One address can have several names and one name can refer to several different a
 
 A **protocol** is a precise *set of rules* defining how computers communicate: the format of addresses, how data is split into packets, and so on. 
 
+https://superuser.com/questions/105838/how-does-router-know-where-to-forward-packet
+
 ## Layers
 Standard TCP/IP model has 4 layers:
 - physical layer, wires/wifi/optics
@@ -76,7 +78,13 @@ With IPv6 it could become obsolete, since every device can have a unique address
 
 
 
+## Firewalls
+Firewall regulates traffic in one of two ways: 
+- allows traffic to pass through and continue on to its destination or 
+- denies traffic and blocks it from moving on. 
 
+Samo tabel sa IP adresama + port + source/destination...  
+Ako je uključen, po defaultu je DENY.
 
 
 

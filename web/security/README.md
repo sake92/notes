@@ -1,6 +1,6 @@
 
 PREDOBROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO:
-https://portswigger.net/web-security
+https://portswigger.net/web-security/learning-path
 
 https://www.youtube.com/watch?v=2PPSXonhIck
 
@@ -10,21 +10,14 @@ Keycloak - Identity and Access Management for Modern Applications: Harness the p
 
 ## HTTPS
 Always use HTTPS protocol.  
-This way you avoid lots of troubles with man-in-the-middle attack.  
-
-
-## Predictability
-Bilo šta što je predvidivo: username, password, session_id, tokeni ->
-je INSECURE !!!!!!!!
-
-Thus -> SecureRandom()
+Avoid lots of troubles with man-in-the-middle attack.  
 
 
 ## URLs
 
 Don't send *sensitive data* in URLs:
 - username/password
-- security token
+- security/session/jwt token
 
 Why?
 - they can be logged in user's history, server logs, proxies etc.
@@ -37,13 +30,20 @@ Reset passworda je MUST HAVE:
 - periodično NATJERAT usera da promijeni password
 - ako je neko skonto password, za 7 dana neće biti validan -> stonks
 
-
 Slanje passworda na mail -> NO
 Predvidivi generisani passwordi -> NO
 
-
 ## Usernames
-Nejedinstveni username -> NO
+Nejedinstveni username -> WTF IS WRONG WITH YOU?
+
+## Cookies
+Koristi HTTPS, jer session hijacking..  
+Koristi `Secure` atribut da **osiguramo da će browser slati ga samo preko TLS**.  
+Koristi `HttpOnly` atribut da **osiguramo da ga JS ne može čitati/pisati** sa `document.cookie` (XSS stonks).  
+Koristi `SameSite` : Lax/Strict
+
+Ne koristi `Path` atribut za security. Tj setuj ga samo na `Path=/`  
+Ne koristi `Domain` atribut (poddomena može bit hakovana i zarazit ostale domene..).
 
 ------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------
