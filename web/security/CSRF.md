@@ -3,12 +3,12 @@ https://owasp.org/www-community/attacks/csrf
 
 CSRF == XSRF == Session Riding == One-Click attack
 
-Sa malo socijalnog inžinjeringa, napadač može prevariti korisnika date web stranice
+Sa malo social inžinjeringa, napadač može prevariti korisnika date web stranice
 da odradi neku *akciju koju nije naumio*.   
 
 Cookies prema `mystore.com` se uvijek automatski šalju.  
 Bez obzira *sa koje stranice* taj request dolazi.  
-Napadač ne mora vidjeti cookie nikako, samo napravi request.
+Napadač **ne mora vidjeti cookie/sessionid nikako**, samo napravi request.
 
 Primjeri:
 - obični tag (ako je GET):  `<img src="http://mystore.com/buy?item=expensiveThing"/>`
@@ -31,7 +31,7 @@ Druga zaštita je `SameSite` cookie atribut koji kaže browseru da šalje **taj 
 
 Do not use GET requests for state changing operations!
 
-Btw, XSS ti **može uništit sve odbrane od CSRF**. :)
+Btw, XSS ti **može uništit neke odbrane od CSRF**.
 
 ### CSRF token
 Da bi spriječili CSRF napad, možemo poslati jedinstveni CSRF token, koji obično vrijedi koliko i sesija.  
