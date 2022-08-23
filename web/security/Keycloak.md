@@ -65,6 +65,19 @@ Možemo verifikovat JWT na 2 načina:
 
 
 -----------------
+-----------------
+
+# Real project usecase 
+- create a realm called myrealm
+- add public client (for frontend) called myclient
+- add user under it, called myuser
+
+- add client role myrole
+- assign that role to myuser
+
+-----------------
+-----------------
+-----------------
 # Tipovi web aplikacija
 - SPA
 - bekend za SPA ili all-in-one PHP/Spring/whatever ili "gateway"

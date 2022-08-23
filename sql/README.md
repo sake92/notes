@@ -1,5 +1,10 @@
 
 
+MUST SEE TALK:
+Modern SQL: A lot has changed since SQL-92 by Markus Winand
+https://www.youtube.com/watch?v=xEDZQtAHpX8
+
+
 https://www.amazon.com/Practical-SQL-Beginners-Guide-Storytelling/dp/1593278276
 http://www.databaseanswers.org/data_models/
 

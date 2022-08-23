@@ -17,6 +17,8 @@ The manifest file must have `Main-Class: com.example.MainClass` field in order t
 Classpath is a list of URLs (can be a directory, a JAR, a `.class` file) where JVM should *search for `.class` files*.  
 Default value (if not specified) is current folder, equivalent to: `java -cp .` .
 
+https://docs.oracle.com/javase/8/docs/technotes/tools/windows/classpath.html
+
 You can print it easily:
 ```java
 String classpath = System.getProperty("java.class.path");
@@ -32,21 +34,23 @@ When you require something from classpath, it **searches locations in order they
 E.g. if you have two classes with same name, the first one found will be loaded. Same is applied for files etc.  
 See https://stackoverflow.com/a/6935725/4496364
 
-#### Recursively add all JARs from folders?
+#### Recursively add all JARs from a folder?
 Lets say you have this structure:
 - lib/
-  - example.jar
+  - example1.jar
+  - example2.jar
   - a/
     - a1.jar
   - b/
     - b1.jar
 
 This is what `-cp` does:
-- `-cp lib/*` adds **only example.jar**
-- `-cp lib/*:lib/a/*` adds example.jar and a1.jar
+- `-cp lib/*` adds **example1.jar** and **example2.jar** 
+- `-cp lib/*:lib/a/*` adds example1.jar, example2.jar and a1.jar
 
 #### Windows command line too long..
-Make a "path jar", where you specify all the dependencies:
+1. use the trick above with `-cp myjars/*`, or  
+2. make a "path jar", where you specify all the dependencies:  
 http://todayguesswhat.blogspot.com/2011/03/jar-manifestmf-class-path-referencing.html
 
 https://stackoverflow.com/a/9053165/4496364
