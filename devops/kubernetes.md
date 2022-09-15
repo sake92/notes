@@ -2,6 +2,10 @@
 
 https://www.youtube.com/watch?v=X48VuDVv0do
 
+- cluster -> set of physical nodes
+- namespace -> **logical** grouping of objects **in one cluster**, like a folder..
+- context -> which cluster/user/config to use, like aws profile
+
 # Pod
 pod == (docker) container(s)  
 node == (physical) server
