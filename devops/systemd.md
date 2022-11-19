@@ -42,15 +42,19 @@ You have to be careful with paths.
 It is a good idea to specify a User other than `root`.  
 And do set a WorkingDirectory so that your scripts can find paths correctly, relative to that folder.
 
+```
 sudo chmod 644 /etc/systemd/system/my_app.service
 
 
 sudo systemctl status my_app.service
 sudo systemctl start  my_app.service
 sudo systemctl stop   my_app.service
+```
 
 Logs:
+```
 journalctl -u my_app.service -f
+```
 
 https://everyday.codes/linux/services-in-systemd-in-depth-tutorial/
 https://gsswain.medium.com/springboot-digitalocean-droplets-410b8bbc6fe6
