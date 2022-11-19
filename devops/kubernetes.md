@@ -1,14 +1,29 @@
 
+# Kubernetes / k8s
 
 https://www.youtube.com/watch?v=X48VuDVv0do
 
+- node -> physical server
+- container -> docker container
+- pod -> grouping of containers+volumes, that should "live together", things you restart/scale *at once, as a unit*
 - cluster -> set of physical nodes
 - namespace -> **logical** grouping of objects **in one cluster**, like a folder..
 - context -> which cluster/user/config to use, like aws profile
 
+All of the above (except node) are called as "k8s objects".  
+They are described in **manifest files**.  
+Manifest file describes **desired state of that object**.  
+K8s stores those manifests in **etcd** storage.
+
+K8s **makes sure the current state of cluster matches desired state**.  
+It schedules pods onto nodes, where resources are available.  
+And it tries its best to put instances of **same pod onto different nodes -> scalability**.  
+For that we use `ReplicaSet`s actually. 
+
 # Pod
-pod == (docker) container(s)  
-node == (physical) server
+
+Smallest deployable artifact in k8s.  
+All *containers* in *one pod* are **always deployed on the same node, have same IP**.
 
 Pods should be **stateless**, so that we can restart/replace them easily.  
 Any data that should survive a restart should be written to a **volume**/redis/db/s3/whatever.
