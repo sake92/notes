@@ -6,7 +6,7 @@ Network - collection of computers/devices that can send/receive data from one an
 Each machine on a network is called a **node**.  
 Nodes that are fully functional computers are also called
 **hosts**.  
-Every network node has a unique **address**. 
+Every network node (network card to be more precise) has a unique **address** in a network. 
 
 On some kinds of networks, nodes also have *text names* that help humans identify them, such as "abc.com".  
 These names are bound to exactly one address, that can change!  
@@ -15,6 +15,8 @@ One address can have several names and one name can refer to several different a
 A **protocol** is a precise *set of rules* defining how computers communicate: the format of addresses, how data is split into packets, and so on. 
 
 https://superuser.com/questions/105838/how-does-router-know-where-to-forward-packet
+
+
 
 ## Layers
 Standard TCP/IP model has 4 layers:
@@ -52,6 +54,9 @@ IPv4 addresses beginning with `127` (most commonly `127.0.0.1`) always mean the 
 These addresses always point to the local computer, no matter which computer you’re running on.  
 In IPv6, `0:0:0:0:0:0:0:1` (a.k.a. `::1`) is the loopback address.   
 The hostname for this address is often `localhost`.
+
+Loopback network interface is a **virtual interface** (fake/virtual/emulated network card).  
+This interface cannot be exposed to outside of a machine.
 
 ### Broadcast addresses
 IPv4 address that uses the same number for each of the four bytes (i.e., `255.255.255.255`), is a broadcast address.  

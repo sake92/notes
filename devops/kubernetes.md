@@ -20,6 +20,21 @@ It schedules pods onto nodes, where resources are available.
 And it tries its best to put instances of **same pod onto different nodes -> scalability**.  
 For that we use `ReplicaSet`s actually. 
 
+# Node
+
+## Control plane nodes
+Orchestrator nodes, handle k8s API calls, handle state, scheduling etc
+
+
+## Worker nodes
+Do the actual work.
+
+
+
+
+
+
+---------------
 # Pod
 
 Smallest deployable artifact in k8s.  

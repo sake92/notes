@@ -45,7 +45,6 @@ And do set a WorkingDirectory so that your scripts can find paths correctly, rel
 ```
 sudo chmod 644 /etc/systemd/system/my_app.service
 
-
 sudo systemctl status my_app.service
 sudo systemctl start  my_app.service
 sudo systemctl stop   my_app.service
