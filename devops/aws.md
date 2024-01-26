@@ -33,5 +33,27 @@ So it's your own cloud that contains your infrastrucure, subnets etc.
 
 
 
+## Users
+
+https://www.youtube.com/watch?v=VclOgMtBXN4
+https://www.archerimagine.com/articles/aws/aws-iam-roles.html
+https://www.freecodecamp.org/news/aws-iam-explained/
+
+An IAM user can be a "real" user or an app.  
+Every user needs to have some *policies* assigned, things that it can do.  
+
+You can create user groups, so that you can assign policies more easily.  
+Then you dont have to add policies one by one..
+
+Roles.. are a bit weird.  
+Users(services like EC2, SQS, EventBridge) need to "assume a role" **temporarily**.  
+This is a way of authenticating that service.
+
+
+
+
+
+
+
 
 
