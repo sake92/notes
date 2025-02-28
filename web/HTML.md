@@ -1,5 +1,14 @@
 
 
+https://whatwebcando.today/
+
+## HTMX
+https://htmx.org/docs/
+https://hypermedia.systems/hypermedia-systems/
+
+JS to HTML is like stored procedure is to SQL.
+
+
 ## Labele
 
 <label>

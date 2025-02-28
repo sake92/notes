@@ -1,5 +1,15 @@
 
 
+##JFR
+
+Profiling your Java Application - A Beginner’s Guide : by Victor Rentea
+https://www.youtube.com/watch?v=3PWgGzpHykc
+
+java -XX:StartFlightRecording:filename=recording.jfr,settings=profile .\hello.java
+
+Ovo "profile" je XML config fajl "profile.jfc" u "jdk-21.0.1+12\lib\jfr".  
+Defaultni settings je "default.jfc" koji se koristi za produkciju, low overehead...
+
 ## Heap
 Java heap je dio memorije koju JVM koristi za alociranje objekata.  
 Koriste se flegovi `-Xmx1g` (maximum 1GB) i `-Xms500m` (start sa 500MB heapom).  

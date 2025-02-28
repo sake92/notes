@@ -8,6 +8,9 @@ https://www.youtube.com/watch?v=xEDZQtAHpX8
 https://www.amazon.com/Practical-SQL-Beginners-Guide-Storytelling/dp/1593278276
 http://www.databaseanswers.org/data_models/
 
+# IDs
+Use UUIDs !!!
+
 # NULLs
 
 Nulls are a PITA.  

@@ -1,6 +1,4 @@
 
-
-
 ## Booleans
 - 0 == false
 - (bilo koji broj != 0) == true
@@ -101,10 +99,8 @@ Kad se dereferencira ide `(*my_struct).x = 5;` ili `my_struct->x = 5;`
 
 
 
-
-
-
-
+## Packing
+http://www.catb.org/esr/structure-packing/
 
 
 
