@@ -11,35 +11,30 @@ Tu se drži *adresa* iduće instrukcije.
 Naravno, bilo bi glupo kada bi CPU izvršavala instrukcije **samo sekvencijalno**.
 Trebaju nam i pozivi funkcija, if-uslovi (grananje), petlje i sl.
 Za ovo se koristi JMP/GOTO (jump - skoči bezuslovno) instrukcija, koja postavlja PC na neku vrijednost.
-Osim JMP imamo u JEQ (jump if equal, skoči pod nekim uslovom) koja postavlja PC **ako je uslov ispunjen**, 
-  tj. simulira `if (condition) abc`.
+Osim bezuslovnog skakanja imamo i uslovne:
+- JEQ (jump if equal) koja postavlja  tj. simulira `if (a == b) ..`
+- JGT, JLT, JNEQ i ostale varijacije
 
 ## Opcode
 Svaka instrukcija ima svoj opcode (operation code). 
 To je obično redni broj instrukcije (dizajner CPU to određuje).
 CPU ga koristi da "skonta" šta treba da odradi.
-Obično se za ovo koristi dekoder, ulaz je opcode, a na izlazu se odrađuju potrebne akcije (nešto kao switch-case..).
+Obično se za ovo koristi demultiplekser, ulaz je opcode, a na izlazu se odrađuju potrebne akcije (nešto kao switch-case..).
 
 Npr. ako imamo ADD i ADDI (add immediate, sabiranje sa konstantom), ADD gleda u registre ili memoriju,
-a ADDI "zna" da je drugi operand konstanta i to je to. :)
+a ADDI "zna" da je drugi operand konstanta i to je to.
 
-LOAD učitava vrijednost iz memorije u registar.
-STORE sprema vrijednost iz registra u memoriju.
+- LOAD učitava vrijednost iz memorije u registar.  
+- STORE sprema vrijednost iz registra u memoriju.  
+- MOV "pomjera" vrijednost s jednog mjesta na drugo, iako je semantički ustvari COPY (nije kao kad fajl `mv a b` u bashu)
 
 ## Interrupt
 Interrupt je kao poziv funkcije, nije neki "error handler" već normalna i očekivana procedura. 
 Postoji minimum jedan **interrupt pin** na CPU (više je ako ima mogućnost hardverskog prioritiziranja).
 Kad se desi neki interrupt, CPU efektivno skače na adresu/funkciju koja je dužna da ga obradi.
-Npr. interrupt za unos sa tastature, CPU dobije i spremi vrijednost trenutne tipke/tipki negdje u memoriju...
+Npr. interrupt za unos sa tastature, CPU dobije i spremi vrijednost trenutne tipke/tipki negdje u memoriju...  
+Interrupti su po svojoj prirodi asinhroni.
 
-## Booting
-Kad se upali kompjuter, sve počinje od neke fiksne adrese, loada se BIOS, bootloader itd.
-Prije je BIOS kod bio u nekom ROM-u (fixna memorija, neprebrisiva), ali je danas obično u flash memoriji (tako da se može izmijenit/flešovat). ;)
-UEFI je new kid on the block, koji pokušava unaprijedit BIOS.
-
-BIOS gleda koji bootable uređaji su dostupni, npr. hard-disk, CD i slično.
-Postoji i prioritetna lista, npr. želimo da bootamo sa CD-a ako je dostupan.
-Sa boot uređaja se učitava bootloader, koji preuzima dalje kontrolu.
 
 ## CPU je "centar svijeta"
 Ako se nekad zapitate, LOAD, gdje? Pa u CPU/registar, sve se gleda u odnosu na CPU.

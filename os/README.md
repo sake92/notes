@@ -1,4 +1,31 @@
 
+## Booting
+Kad se upali kompjuter, sve počinje od neke fiksne adrese:
+- loada se BIOS iz ROMa
+- BIOS loada bootloader
+- bootloader loada OS kernel itd.
+
+Prije je BIOS kod bio u nekom ROM-u (fixna memorija, neprebrisiva), ali je danas obično u flash memoriji (tako da se može izmijenit/flešovat/updateat).  
+UEFI je new kid on the block, koji pokušava unaprijedit BIOS.
+
+BIOS gleda koji su bootable uređaji dostupni, npr. hard-disk, USB, CD i slično.
+Postoji i prioritetna lista, npr. želimo da bootamo sa CD-a ako je dostupan.
+Sa boot uređaja se učitava bootloader, koji preuzima dalje kontrolu.  
+
+Bootloader mora biti 512 bajtova max ???
+
+## Kernel
+Kernel je srce OS-a. On se izvršava u privileged modu, to se seta na samom CPU sa nekom instrukcijom.  
+Procesi koji su "obični smrtnici", u tzv user modu se izvršavaju u "normalnom" modu CPU-a.  
+User-mode procesi moraju ići preko kernela kada žele da:
+- ispisuju na ekran
+- čitaju sa tastature i uređaja
+- čitaju/pišu fajlove sa hard-diska
+- čitaju/pišu sa mreže
+
+To rade preko sistemskih poziva, syscall.  
+Syscalls su C library koje OS providea, npr libc na *nix sistemima.
+
 ## Procesi
 Proces ima svoj PID, process ID.  
 On jedinstveno identifikuje dati proces koji se izvršava.
