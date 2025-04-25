@@ -10,7 +10,8 @@ iliiiiiii boljeee
 
 
 ### Java...
-`jps -m` da izlista sve Java procese koje sam ja pokrenuo..
+`jps -vlm` da izlista sve Java procese koje sam ja pokrenuo..
+
 
 ## TTY teletype/teleprinter
 http://www.linusakesson.net/programming/tty/index.php

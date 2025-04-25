@@ -42,17 +42,9 @@ U C-u su najpoznatije `malloc` i `free`.
 
 Dio memorije koju koristi memory manager naziva se **heap**.
 
-
-
-
-
-
-
-
-
-
-
-
+> Zanimljivo je npr da JVM čim se pokrene alocira više memorije nego joj ustvari treba.
+Zatim u runtime JVM sama hendla tu memoriju, shodno potrebama programa.
+Zato što bi stalno pozivanje malloc/free stavilo velik pritisak na OS bez puno benefita i usporilo program.
 
 
 

@@ -8,7 +8,13 @@ Postoji hrpa objektnog koda negdje u sistemu.
 Kad korisnik include-a neki library, 
 **linker kopira kod tog liba** u objektni kod tog programa.
 
-Dupliciran kod na disku, RAMu, ako se **update lib**, mora se sve **ponovo relinkat**!
+Prednosti:
+- manje dependencija, samo kopiraš taj EXE
+
+Problemi:
+- dupliciran kod na disku, RAMu
+- ako se **updatea lib** -> mora se sve **ponovo relinkat**! (security flaw)
+
 
 ### Dynamic libs
 
