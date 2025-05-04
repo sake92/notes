@@ -39,7 +39,7 @@ int 10h         # trigger BIOS interrupt for video service
 
 ## Bootloader
 
-BIOS/UEFI loada samo prvi sektor hard-diska u RAM i onda preda kontrolu bootloaderu.
+BIOS loada samo prvi sektor hard-diska u RAM i onda preda kontrolu bootloaderu.
 > Veličina sektora na hard-disku 512 bytes
 
 Bootloader moramo napisat u assembleru jer 512 bytes.
@@ -88,4 +88,9 @@ https://en.wikipedia.org/wiki/Master_boot_record
 
 https://www.howtogeek.com/193669/whats-the-difference-between-gpt-and-mbr-when-partitioning-a-drive/
 
+https://rodsbooks.com/efi-bootloaders/principles.html
+
+## YouTube
+
+https://www.youtube.com/watch?v=t3iwBQg_Gik&list=PLT7NbkyNWaqZYHNLtOZ1MNxOt8myP5K0p
 
