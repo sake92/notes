@@ -2,7 +2,6 @@
 
 ## Java
 Effective Java, by Josh Bloch
-Java Concurrency in Practice, by Brian Goetz etc
 
 ## Scala
 Scala Programming, by Odersky etc
@@ -15,11 +14,15 @@ Dive into Systems
 
 
 ## OS
+
+OS concepts (dinosaur book)
+OS - 3 easy parts
 The Linux Programming Interface
+Tanenbaum's books.. especially the Minix one
 
 
-
-
-
+## Concurrency
+Little book of Semaphores
+Java Concurrency in Practice
 
 
